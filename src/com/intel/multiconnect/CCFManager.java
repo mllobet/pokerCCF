@@ -83,7 +83,7 @@ import com.intel.stc.utility.StcSocket;
 public class CCFManager extends StcServiceInet implements StcSessionUpdateListener, StcConnectionListener,
 		StcLocalSessionUpdateListener, IStcActivity {
 
-	private static final String LOGC = "PokerCCF"
+	private static final String LOGC = "PokerCCF";
 	private boolean bundleParsed = false;
 	private Bundle initBundle;
 	private ArrayList<ISimpleDiscoveryListener> listeners = new ArrayList<ISimpleDiscoveryListener>();

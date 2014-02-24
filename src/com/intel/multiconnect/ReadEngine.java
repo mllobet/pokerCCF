@@ -46,7 +46,7 @@ import android.util.Log;
  */
 public class ReadEngine implements Runnable 
 {	
-	static final String LOGC = "PokerCCF"
+	static final String LOGC = "PokerCCF";
 	
 	InputStream stream;
 	IServiceIOListener listener;

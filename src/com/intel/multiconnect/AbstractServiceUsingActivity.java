@@ -65,7 +65,7 @@ import com.intel.stc.utility.StcDiscoveryNode;
  */
 public abstract class AbstractServiceUsingActivity extends Activity implements IStcServInetClient, ISimpleDiscoveryListener,StcDiscoveryNodeUpdateEventListener 
 {
-	public static final String LOGC = "PokerCCF"
+	public static final String LOGC = "PokerCCF";
 	public static final String ServiceIntent = "com.intel.multiconnect.CCFManager";
 	
 	private static final int STCLIB_ACTIVITY_REQUEST = 23;
