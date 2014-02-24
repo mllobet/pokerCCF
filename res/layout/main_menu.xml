@@ -30,12 +30,4 @@
         android:layout_below="@+id/clientButton"
         android:text="@string/serverButton" />
 
-    <Button
-        android:id="@+id/discoveryButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/serverButton"
-        android:layout_below="@+id/serverButton"
-        android:text="@string/discoveryButton" />
-
 </RelativeLayout>

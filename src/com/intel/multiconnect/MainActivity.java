@@ -69,7 +69,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		setContentView(R.layout.menu);
+		setContentView(R.layout.main_menu);
 		
 		clientButton = (Button)findViewById(R.id.clientButton);
 		clientButton.setOnClickListener(this);
