@@ -9,14 +9,14 @@
     tools:context=".CCFUIController" >
     
 	<Button 
-	    android:id="@+id/discoveryNodes"
+	    android:id="@+id/discoveryButton"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:layout_alignParentTop="true"
-	    android:text="@string/discovery_nodes"/>
+	    android:text="@string/discoveryButton"/>
 	<LinearLayout 
 	    android:id="@+id/linearlayout1"
-	    android:layout_below="@id/discoveryNodes"
+	    android:layout_below="@id/discoveryButton"
 	    android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"

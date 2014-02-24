@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".CCFUIController" >
+
+    <LinearLayout
+        android:id="@+id/bottonlayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/clientButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/bottonlayout"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="81dp"
+        android:text="@string/clientButton" />
+
+    <LinearLayout
+        android:id="@+id/linearlayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/bottonlayout"
+        android:layout_below="@+id/clientButton"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/sessionList"
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="5dp"
+            android:visibility="gone" >
+        </ListView>
+
+        <TextView
+            android:id="@+id/sessionListEmptyText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/session_empty_title"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/menuText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/clientButton"
+        android:layout_alignParentTop="true"
+        android:text="@string/menuText"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/serverButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linearlayout1"
+        android:layout_alignTop="@+id/linearlayout1"
+        android:text="@string/serverButton" />
+
+    <Button
+        android:id="@+id/discoveryButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/serverButton"
+        android:layout_below="@+id/serverButton"
+        android:text="@string/discoveryButton" />
+
+</RelativeLayout>

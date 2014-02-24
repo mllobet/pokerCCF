@@ -93,7 +93,7 @@ public class CCFUIController extends AbstractServiceUsingActivity implements OnC
 		chatAdapter = new ChatAdapter(this);
 		chatList.setAdapter(chatAdapter);
 		
-		discoveryNodesButton = (Button)findViewById(R.id.discoveryNodes);
+		discoveryNodesButton = (Button)findViewById(R.id.discoveryButton);
 		discoveryNodesButton.setOnClickListener(this);
 		
 		doStartService();
@@ -148,7 +148,7 @@ public class CCFUIController extends AbstractServiceUsingActivity implements OnC
 				});
 			}
 			break;
-		case R.id.discoveryNodes :
+		case R.id.discoveryButton :
 			Intent intent = new Intent(CCFUIController.this,DiscoveryNodeActivity.class);
 			startActivity(intent);
 			break;
