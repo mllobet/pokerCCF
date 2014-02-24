@@ -55,51 +55,6 @@ import com.intel.stc.events.StcException;
 import com.intel.stc.lib.StcLib;
 import com.intel.stc.lib.StcLib.NodeFlags;
 
-import android.app.Activity;
+public class ClientController extends CCFUIController {
 
-/***
- * Main Activity
- */
-public class MainActivity extends Activity implements OnClickListener{
-
-	private Button clientButton = null;
-	private Button serverButton = null;
-	private Button discoveryNodesButton = null;
-	
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		
-		setContentView(R.layout.menu);
-		
-		clientButton = (Button)findViewById(R.id.clientButton);
-		clientButton.setOnClickListener(this);
-
-		serverButton = (Button)findViewById(R.id.serverButton);
-		serverButton.setOnClickListener(this);
-		
-		discoveryNodesButton = (Button)findViewById(R.id.discoveryButton);
-		discoveryNodesButton.setOnClickListener(this);
-	}
-
-	//This is a callback on button click.
-	@Override
-	public void onClick(View view) {
-		Intent intent;
-		switch(view.getId()){
-		
-		case R.id.clientButton:
-			intent = new Intent(MainActivity.this,ClientController.class);
-			startActivity(intent);
-			break;
-		case R.id.serverButton:
-			intent = new Intent(MainActivity.this,ServerController.class);
-			startActivity(intent);
-			break;
-		case R.id.discoveryButton:
-			intent = new Intent(MainActivity.this,DiscoveryNodeActivity.class);
-			startActivity(intent);
-			break;
-		}
-	}
 }

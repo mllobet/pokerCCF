@@ -51,6 +51,16 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.intel.multiconnect.ClientController"
+            android:screenOrientation="nosensor" >
+        </activity>
+
+        <activity
+            android:name="com.intel.multiconnect.ServerController"
+            android:screenOrientation="nosensor" >
+        </activity>
+
         <service
             android:name="com.intel.multiconnect.CCFManager"
             android:exported="true" >
