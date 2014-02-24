@@ -42,7 +42,7 @@ import android.util.Log;
  */
 public class WriteEngine implements Runnable 
 {
-	static final String LOGC = WriteEngine.class.getCanonicalName();
+	static final String LOGC = "PokerCCF"
 	
 	IServiceIOListener listener;
 	OutputStream stream;
