@@ -64,7 +64,6 @@ public class MainActivity extends Activity implements OnClickListener{
 
 	private Button clientButton = null;
 	private Button serverButton = null;
-	private Button discoveryNodesButton = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -77,9 +76,6 @@ public class MainActivity extends Activity implements OnClickListener{
 
 		serverButton = (Button)findViewById(R.id.serverButton);
 		serverButton.setOnClickListener(this);
-		
-		discoveryNodesButton = (Button)findViewById(R.id.discoveryButton);
-		discoveryNodesButton.setOnClickListener(this);
 	}
 
 	//This is a callback on button click.
@@ -94,10 +90,6 @@ public class MainActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.serverButton:
 			intent = new Intent(MainActivity.this,ServerController.class);
-			startActivity(intent);
-			break;
-		case R.id.discoveryButton:
-			intent = new Intent(MainActivity.this,DiscoveryNodeActivity.class);
 			startActivity(intent);
 			break;
 		}
