@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MultiConnect</string>
+    <string name="action_settings">Settings</string>
+    <string name="register">Register</string>
+    <string name="enter_node">Enter Node</string>
+    <string name="createjoin">Create/Join</string>
+    <string name="join">Join</string>
+    <string name="node_list_title">List of Nodes:</string>
+    <string name="node_empty_title">No Nodes available</string>
+    <string name="session_list_title">List of available sessions:</string>
+    <string name="session_empty_title">No Users available</string>
+    <string name="title_activity_discovery_node">DiscoveryNodeActivity</string>
+    <string name="discovery_nodes">Discovery Nodes</string>
+    <string name="chat_box_hint">Enter text to chat.</string>
+    <string name="send">Send</string>
+
+</resources>
