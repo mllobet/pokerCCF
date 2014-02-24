@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="6dp" >
+
+    <CheckBox
+        android:id="@+id/ulv_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="5dp" />
+
+    <RelativeLayout
+        android:id="@+id/ulv_avatar_container"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true" >
+
+        <ImageView
+            android:id="@+id/ulv_avatar"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="6dip"
+            android:scaleType="centerInside" />
+
+        <ImageView
+            android:id="@+id/ulv_security_ribbon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/cert_decoration" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/ulv_screenname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@id/ulv_checkbox"
+        android:layout_toRightOf="@id/ulv_avatar_container"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="1"
+        android:singleLine="true"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/ulv_devicename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ulv_screenname"
+        android:layout_toLeftOf="@+id/ulv_checkbox"
+        android:layout_toRightOf="@+id/ulv_avatar_container"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="1"
+        android:singleLine="true"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/ulv_friendicon"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_alignLeft="@id/ulv_devicename"
+        android:layout_below="@id/ulv_devicename"
+        android:scaleType="fitXY"
+        android:src="@drawable/favorite_indicator_on" />
+
+    <ImageView
+        android:id="@+id/ulv_blockedicon"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_below="@id/ulv_devicename"
+        android:layout_toRightOf="@id/ulv_friendicon"
+        android:scaleType="fitXY"
+        android:src="@drawable/blocked_indicator_on" />
+
+</RelativeLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue"
+    android:gravity="center" >
+
+    <Button
+        android:id="@+id/unboxing_avatar_continue_button"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/continue_button_label" />
+
+    <ScrollView
+        android:id="@+id/choose_avatar_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/unboxing_avatar_continue_button"
+        android:fillViewport="true" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/unboxing_avatar_title"
+                android:text="@string/choose_avater_header"
+                style="@style/HeaderTextStyle" />
+
+            <TextView
+                android:id="@+id/unboxing_avatar_desc"
+                android:text="@string/choose_avater_message"
+                style="@style/MainMessageTextStyle" />
+
+            <ImageView
+                android:id="@+id/unboxing_avatar"
+                android:contentDescription="@string/avatar_description"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/generic_avatar" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- 
+    android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:maxWidth="450dp"                
+                android:textColor="@color/white"
+                android:textSize="26sp"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:maxWidth="450dp"                
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                
+                 -->
+</RelativeLayout>

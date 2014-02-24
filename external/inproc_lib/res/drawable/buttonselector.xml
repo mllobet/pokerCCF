@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/gradient_tab_background" android:state_pressed="true"/>
+    <item android:drawable="@drawable/intel_button_grad" android:state_pressed="false" android:state_enabled="true"/>
+    <item android:drawable="@drawable/intel_button_disabled_grad" android:state_enabled="false" />
+
+</selector>

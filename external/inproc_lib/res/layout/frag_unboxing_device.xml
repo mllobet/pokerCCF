@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:orientation="vertical"
+    android:gravity="center"    
+    android:background="@color/blue">  
+     
+    <Button
+        android:id="@+id/done_button"
+        android:text="@string/enter_device_name_done_button_label"
+        android:layout_centerHorizontal="true"     
+        android:layout_alignParentBottom="true"	
+        android:enabled="false"
+        style="@style/ButtonStyle" />
+    
+    <ScrollView
+        android:id="@+id/enterdevicescrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/done_button"
+        android:fillViewport="true" >
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:orientation="vertical" >
+		        
+            <TextView
+		        android:id="@+id/enter_device_name_header"
+		        style="@style/HeaderTextStyle"		       
+		        android:text="@string/enter_device_name_header" />
+            
+		    <TextView
+		        android:id="@+id/device_name_label"
+		        style="@style/MainMessageTextStyle"	     
+		        android:layout_marginTop="40dp"		        
+		        android:text="@string/enter_device_name_label"
+		        android:textStyle="bold" />
+
+		    <EditText
+		        android:id="@+id/device_name_text"
+		        style="@style/EditTextStyle"
+		        android:layout_marginTop="5dp"
+		        android:layout_gravity="center"
+		        android:textCursorDrawable="@null"
+		        android:hint="@string/enter_device_name_hint"
+		        android:maxWidth="450dp"
+		        android:minWidth="350dp" >		        
+		    </EditText>
+		    
+		    <!-- Put avatar image here -->
+            <ImageView
+	             android:id="@+id/unboxing_avatar"
+	             android:contentDescription="@string/avatar_description"
+	             android:layout_width="70dp"
+	             android:layout_height="70dp"
+	             android:layout_marginTop="20dp"
+	             android:layout_gravity="center"
+	             android:src="@drawable/generic_avatar" 
+	             android:visibility="gone"/>
+	              
+            <TextView
+		       android:id="@+id/screen_name_text"
+		       style="@style/MainMessageTextStyle"			        
+		       android:layout_marginTop="20dp"
+		       android:textIsSelectable="true"
+		       android:visibility="gone"/>
+              
+            <TextView
+		       android:id="@+id/status_message_text"
+		       style="@style/MainMessageTextStyle"		       	
+		       android:textSize="18sp"		        
+		       android:layout_marginTop="20dp" 
+		       android:textIsSelectable="true"
+		       android:visibility="gone"/>    
+            	             
+		</LinearLayout>		
+       
+    </ScrollView>
+    
+    <!-- 
+    android:text="@string/screen_name_text" 
+    android:text="@string/status_message_text"
+     -->
+</RelativeLayout>

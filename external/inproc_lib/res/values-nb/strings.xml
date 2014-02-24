@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Notification -->
+
+    <string name="note_title">"Intel® Tilkoblingssenter"</string>
+
+    <!-- General / Common -->
+
+    <string name="yes">"Ja"</string>
+    <string name="no">"Nei"</string>
+    <string name="cancel_button_label">Cancel</string>
+    <string name="general_wait">Please wait…</string>
+    <string name="continue_button_label">Continue</string>
+    <string name="general_name">"Navn:"</string>
+    <string name="unable_start_camera">"Kan ikke starte kameraet."</string>
+    <string name="could_not_open_image">"Kan ikke åpne bildet."</string>
+    <string name="general_register_now">"Vil du registrere denne enheten nå?"</string>
+    <string name="error_gallery_not_stored_picture">"Operasjonen mislyktes. Onlinebilder kan ikke velges. Last ned bilde til denne enheten."</string>
+    <!-- 
+    <string name="online_image_detection">content://com.google.android.gallery3d</string> -->
+    <string name="avatar_description">avatar</string>
+
+	
+    <!-- Reauthentication notification -->
+
+    <string name="notification_renew_registration">"Forny registrering"</string>
+    <string name="notification_reauthen_body">"Legitimasjonen din for Intel® Tilkoblingssenter for denne enheten er i ferd med å utløpe. Klikk her for å registrere denne enheten på nytt."</string>
+    <string name="reauthen_not_expired_body">"Denne enhetens registrering i Intel® Tilkoblingssenter er i ferd med å utløpe. Registreringen bekrefter identiteten din overfor andre brukere. Du må være koblet til Internett for å kunne registrere."</string>
+    <string name="reauthen_expired_body">"Legitimasjonen din for Intel® Tilkoblingssenter for denne enheten er utløpt. Registrer denne enheten."</string>
+
+    <!-- New Unboxing -->
+
+
+    <!-- Start Up Page -->
+    <string name="start_up_page_message">Register with Intel Identity Cloud Services good, allows online discovery, secure, my devices, makes you a better person</string>
+    <string name="start_up_page_create_account_button_label">Create an account</string>
+    <string name="start_up_page_sign_in_button_label">Sign In</string>
+    <string name="start_up_page_skip_sign_in_button_label">Skip Sign In</string>
+
+    <!-- Enter Name Page -->
+    <string name="enter_screenname_header">Enter Screen Name</string>
+    <string name="enter_screenname_message">This is the name you will be seen as.</string>
+    <string name="enter_screenname_screen_name_label">Screen Name:</string>
+    <string name="enter_screenname_screen_name_hint">Screen Name</string>
+    <string name="enter_screenname_screen_name_desc">You can enter a nickname or your real name. This name will be shown to other people running Intel® Connect Center.</string>
+
+    <!-- Choose avatar page -->
+    <string name="choose_avater_header">Choose your profile picture</string>
+    <string name="choose_avater_message">Choose a profile picture to represent you. You can choose one of the pictures shown here, or browse to select your own custom picture. This profile picture will be shown to other people running Intel® Connect Center.</string>
+    <string name="choose_avater_gallery_button_label">Browse for a picture</string>
+    <string name="choose_avater_camera_button_label">Take a photo</string>
+    <string name="choose_avatar_error_gallery_not_stored_picture_title">Profile Picture</string>
+    <string name="choose_avatar_error_gallery_not_stored_picture">Please copy the picture to the local storage before choosing as an avatar or choose from local storage.</string>
+
+    <!-- Enter Device Name Page -->
+    <string name="enter_device_name_header">Enter Device Name</string>
+    <string name="enter_device_name_label">Device Name:</string>
+    <string name="enter_device_name_hint">Device Name</string>
+    <string name="enter_device_name_done_button_label">Done</string>
+
+    <!-- Successful Page -->
+    <string name="successful_header">Successful</string>
+    <string name="successful_ok_button_label">OK</string>
+    
+    <!-- Old Registration Strings -->
+    <string name="nu_title_registration">"Registrering"</string>
+    <string name="nu_text_registration">"Registrering gir deg en tryggere brukeropplevelse ved bruk av Intel® Tilkoblingssenter."</string>
+    <string name="nu_sub_text_registration">"Du må være koblet til Internett for å kunne fullføre registreringen."</string>
+    <string name="nu_sub_button1">"Registrer nå"</string>
+    <string name="nu_sub_button2">"Registrer senere"</string>
+    <string name="nu_sub_button3">"Avregistrer"</string>
+    <string name="nu_title_verify">"Kontrollerer Internett-tilkoblingen"</string>
+    <string name="nu_no_internet">"Kan ikke koble til nettskytjenester."</string>
+    <string name="nu_title_sign_in">"Logg på"</string>
+    <string name="nu_title_registering">"Registrering"</string>
+
+    <!-- Cloud and Unboxing -->
+
+    <string name="unboxing_name">"La andre i området få vite hvem du er. "\n"Intel® Tilkoblingssenter viser dette navnet til andre i området, slik at de kan invitere deg til å spille spill og kjøre programmer."</string>
+    <string name="unboxing_avatar">"Legg til et profilbilde av deg selv. "\n"Andre i området ser dette bildet, og vil da kunne finne frem til deg raskere."</string>
+    <string name="unboxing_selectPicture">"Velg profilbilde"</string>
+    
+    <string name="unboxing_getStarted">"Kom i gang"</string>
+    <string name="unboxing_insert_username">Enter Username…</string>
+    <string name="cloud_reauthenticate">"Autentifiser enheten på nytt"</string>
+    <string name="cloud_no_connection_new">"Kan ikke kontakte Intel®-nettskytjenester. Kontroller at du har en Internett-tilkobling, og at brannmuren er korrekt konfigurert."</string>
+    <string name="cloud_signing_in_title">Signing In…</string>
+    
+    <!--  Cloud Error Strings -->
+    <string name="cloud_error_header">Registration Failed</string>       
+    <string name="cloud_error_message1">Unable to connect to the Internett.</string>
+    <string name="cloud_error_message2">Please make sure that you have an Internett Connection.</string>
+    <string name="cloud_error_try_again_button_label">Try Again</string>    
+	<string name="cloud_error_no_internet_header">No Internett Connection</string>
+	<string name="cloud_error_description">No Internett Connection</string> 
+	
+    <!-- StarterActivity -->
+
+    <string name="pending">Checking for Platform …</string>
+    <string name="ok">"OK"</string>
+    <string name="invalid_username">"Ugyldig brukernavn"</string>
+    <string name="invalid_username_text">"Brukernavnet må inneholde minst ett gyldig tegn."</string>
+
+    <!-- Update User Details -->
+
+    <string name="profile_insert_username">Enter Username…</string>
+    <string name="profile_insert_status">Enter Status Message…</string>
+    <string name="app_name">SimpleChat</string>
+    <string name="app_description">Simple chat app description.</string>
+    <string name="notification_text">has invited you to simple chat.</string>
+    <string name="timeout_toast_text">Invitation to simplechat has timed out.</string>
+    <string name="schat_inv_text">%s invited you to Chat.</string>
+    <string name="title_activity_friend_initiator">FriendInitiatorActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Do you want invite</string>
+    
+     <!-- FriendInviteActivity -->
+     
+    <string name="friend_receive_invitation_received"> %1$s wants to be your friend. Friends can connect to each other over the Internett.</string>
+    <string name="friend_receive_invitation_accepted_error_occurred"> Could not complete friend request. %1$s may not be available.</string>
+    <string name="accept_button_text">Accept</string>
+    <string name="ignore_button_text">Ignore</string>
+    <string name="ok_button_text">OK</string>
+	<string name="friendsendinvitationmsg_makingfriendrequest">Asking %1$s to be your friend...</string>
+	<string name="friendsendinvitationmsg_erroroccurred">Could not make %1$s your friend.  Try later.</string>
+	<string name="friendsendinvitationmsg_friendrequestacceptedregisteringwithserver">Making friends with %1$s...</string>
+	<string name="friendsendinvitationmsg_friendrequestnotaccepted">Could not complete friend request. %1$s may not be available.</string>
+	<string name="friendsendinvitationmsg_nolocalinternetconnection">You do not have an Internett connection.  An Internett connection is required to make friends.</string>
+	<string name="friendsendinvitationmsg_preconfirmsendinvitation">Would you like to invite %1$s to be your friend?</string>
+	<string name="friendsendinvitationmsg_serverregistrationsucceededfriendsmade">You and %1$s are now friends</string>
+	<string name="msgdlg_okbtntext">OK</string>
+	<string name="msgdlg_cancelbtntext">Cancel</string>
+	<string name="msgdlg_yesbtntext">Yes</string>
+	<string name="msgdlg_nobtntext">No</string>
+	<string name="friendreceiveinvitationmsg_errorafteracceptinginvitation">Could not make %1$s your friend.  Try later.</string>
+	<string name="friendreceiveinvitationmsg_invitationaccepted">Making friends with %1$s...</string>
+	<string name="friendreceiveinvitationmsg_invitationreceived">%1$s wants to be your friend. Friends can connect to each other over the Internett.</string>
+	<string name="friendreceiveinvitationmsg_registrationsucceededfriendsmade">You and %1$s are now friends</string>
+	<string name="friendreceiveinvitation_title">Received Friend Invitation</string>
+	<string name="friendsendinvitation_title">Sent Friend Invitation</string>
+	<string name="friendsendinvitationmsg_noremoteinternetconnection">Could not make %1$s your friend.  %1$s does not have an Internett connection. Try later.</string>
+	<string name="friendsendinvitationmsg_serverregistrationsucceededfriendsmade1">Could not make %1$s your friend.  Try later.</string>
+	<string name="friendreceiveinvitationmsg_nointernet">You do not have an Internett connection.  An Internett connection is required to make friends.</string>
+	<string name="msgdlg_acceptbtntext">Accept</string>
+	<string name="msgdlg_ignorebtntext">Ignore</string>
+	<string name="msgdlg_retrybtntext">Retry</string>
+    
+    </resources>

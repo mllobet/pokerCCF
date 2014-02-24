@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:orientation="vertical"
+    android:gravity="center"    
+    android:background="@color/blue">  
+     
+    <Button
+        android:id="@+id/successful_done_button"
+        android:text="@string/enter_device_name_done_button_label"
+        android:layout_centerHorizontal="true"     
+        android:layout_alignParentBottom="true"	
+        android:enabled="false"
+        style="@style/ButtonStyle" />
+    
+    <ScrollView
+        android:id="@+id/enterdevicescrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/successful_done_button"
+        android:fillViewport="true" >
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:orientation="vertical" >
+		        
+            <TextView
+		        android:id="@+id/successful_header"
+		        style="@style/HeaderTextStyle"		       
+		        android:text="@string/successful_header" />
+                        
+            <!-- Put avatar image here -->
+            <ImageView
+	             android:id="@+id/successful_avatar"
+	             android:contentDescription="@string/avatar_description"
+	             android:layout_width="70dp"
+	             android:layout_height="70dp"
+	             android:layout_marginTop="20dp"
+	             android:layout_gravity="center"
+	             android:src="@drawable/generic_avatar" 
+	             android:visibility="visible"/>
+	              
+		    <TextView
+		        android:id="@+id/successful_screen_name_label"
+		        style="@style/MainMessageTextStyle"	     
+		        android:layout_marginTop="30dp"	        
+		        android:textIsSelectable="true"		       
+		        android:visibility="visible"/>		    
+		    
+            <TextView
+		       android:id="@+id/successful_status_message_label"
+		       style="@style/MainMessageTextStyle"
+		       android:textIsSelectable="true"
+		       android:visibility="visible"/>
+            	             
+		</LinearLayout>		
+       
+    </ScrollView>  
+</RelativeLayout>

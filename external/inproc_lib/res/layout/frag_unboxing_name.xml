@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue"
+    android:gravity="center" >
+
+    <Button
+        android:id="@+id/enter_name_page_continue_button"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:enabled="false"
+        android:text="@string/continue_button_label" />
+
+    <ScrollView
+        android:id="@+id/enter_name_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/enter_name_page_continue_button"
+        android:fillViewport="true" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/unboxing_enter_name_header"
+                android:text="@string/enter_screenname_header"
+                style="@style/HeaderTextStyle" />
+
+            <TextView
+                android:id="@+id/unboxing_enter_name_desc"
+                android:text="@string/enter_screenname_message"
+                style="@style/MainMessageTextStyle" />
+            
+            <TextView
+		        android:id="@+id/screen_name_label"
+		       	android:text="@string/enter_screenname_screen_name_label"
+		        style="@style/MainMessageTextStyle"
+		        android:textStyle="bold"
+		        android:layout_marginTop="60dip" />
+
+            <EditText 
+		        android:id="@+id/screen_name_text"
+		        style="@style/EditTextStyle"
+		        android:layout_marginTop="5dip"
+		        android:layout_gravity="center"
+		        android:imeOptions="actionDone"
+		        android:hint="@string/enter_screenname_screen_name_hint"
+		        android:textCursorDrawable="@null"
+		        android:singleLine="true"
+		        android:maxWidth="450dp"
+		        android:minWidth="350dp" />	
+            
+		        
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- 
+    android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:maxWidth="450dp"                
+                android:textColor="@color/white"
+                android:textSize="26sp"                
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:maxWidth="450dp"                
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                
+                <EditText
+                android:id="@+id/unboxing_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:hint="@string/unboxing_insert_username"
+                android:imeOptions="actionNext"
+                android:inputType="textNoSuggestions"
+                android:maxWidth="450dp"
+                android:minWidth="200dp"
+                android:singleLine="true" />
+                
+                My edit text
+                <EditText 
+		        android:id="@+id/screen_name_text"
+		        style="@style/EditTextStyle"
+		        android:layout_marginTop="30dip"
+		        android:layout_gravity="center"
+		        android:imeOptions="actionNext"
+		        android:singleLine="true"
+		        android:maxWidth="450dp"
+		        android:minWidth="250dp" />	
+                 -->
+</RelativeLayout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="@color/blue"
+    android:gravity="center"
+    android:orientation="vertical" >
+    
+
+    <TextView
+        android:id="@+id/cloud_signing_in_title"
+        android:text="@string/cloud_signing_in_title"
+        style="@style/HeaderTextStyle" />
+        
+
+    <ProgressBar
+        android:id="@+id/cloud_signing_in_circular_progress_bar"
+        android:layout_marginTop="30dp"
+        style="@style/CircularProgressBarStyle" />
+
+    <TextView
+        android:id="@+id/cloud_progress_label"
+        android:text="@string/general_wait"
+        android:layout_marginTop="20dp"
+        style="@style/MainMessageTextStyle" />
+        
+    <!-- 
+    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:maxWidth="450dp"
+        
+        android:textColor="@color/white"
+        android:textSize="26sp" />
+        
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:maxWidth="450dp"
+        
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+    
+    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
+        android:minWidth="100dp"
+        android:gravity="center"
+         -->
+</LinearLayout>
