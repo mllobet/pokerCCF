@@ -58,7 +58,7 @@ public class SessionAdapter extends BaseAdapter {
 
 	public List<StcSession> sessionList = new ArrayList<StcSession>();
 	CCFManager service;
-	CCFUIController selectActivity;
+	Context selectActivity;
 
 	/***
 	 * Creates the view for one item in the list.
@@ -178,7 +178,7 @@ public class SessionAdapter extends BaseAdapter {
 		}
 	}
 
-	public SessionAdapter(CCFManager service, CCFUIController selectActivity) {
+	public SessionAdapter(CCFManager service, Context selectActivity) {
 		this.service = service;
 		this.selectActivity = selectActivity;
 		setNewSessionList(service.getSessions());
