@@ -36,7 +36,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.intel.multiconnect.CCFUIController"
+            android:name="com.intel.multiconnect.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="nosensor" >
             <intent-filter>
