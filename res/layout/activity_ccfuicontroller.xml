@@ -53,25 +53,4 @@
 	    android:background="@drawable/background_with_shadow"
 	    android:visibility="visible" />
 
-	<LinearLayout 
-	    android:id="@+id/bottonlayout"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="horizontal"
-	    android:layout_alignParentBottom="true"
-	    >
-	    <EditText 
-	        android:id="@+id/chatText"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="2"
-	        android:hint="@string/chat_box_hint"/>
-	    <Button 
-	        android:id="@+id/sendButton"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:text="@string/send"
-	        android:enabled="false"/>
-	</LinearLayout>
 </RelativeLayout>

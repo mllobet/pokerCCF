@@ -41,7 +41,6 @@ import android.content.res.Configuration;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,8 +61,6 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 	private TextView sessionEmptyText = null;
 	private ListView chatList = null;
 	ChatAdapter chatAdapter = null;
-	private Button sendButton = null;
-	private EditText chatText = null;
 	private Button discoveryNodesButton = null;
 	private Dialog platformStartAlert;
 	
@@ -77,11 +74,6 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 		sessionList = (ListView)findViewById(R.id.sessionList);
 		sessionEmptyText = (TextView)findViewById(R.id.sessionListEmptyText);
 		sessionList.setEmptyView(sessionEmptyText);
-		
-		sendButton = (Button)findViewById(R.id.sendButton);
-		sendButton.setOnClickListener(this);
-		chatText = (EditText)findViewById(R.id.chatText);
-		chatText.addTextChangedListener(mTextEditorWatcher);
 		
 		chatList = (ListView)findViewById(R.id.chatList);
 		chatAdapter = new ChatAdapter(this);
@@ -124,24 +116,6 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 	public void onClick(View view) {
 		switch(view.getId()){
 		
-		case R.id.sendButton :
-			final String temp = chatText.getText().toString();
-			if(temp!=null && !temp.equals("")){
-				serviceManager.postToConnections(temp);
-				myHandler.post(new Runnable() {
-					@Override
-					public void run() {
-						if(CCFManager.connection_Counter>0){
-							chatAdapter.addChatLine("Me : "+temp);
-							chatAdapter.notifyDataSetChanged();
-						}else{
-							displayNoConnectiondialog();
-						}
-						chatText.setText(null);
-					}
-				});
-			}
-			break;
 		case R.id.discoveryButton :
 			Intent intent = new Intent(ServerController.this,DiscoveryNodeActivity.class);
 			startActivity(intent);
@@ -217,34 +191,6 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 	}
 /*End**************STC callback.**********/
 	
-
-		
-		//Textwatcher to enable create and join button.
-		private final TextWatcher  mTextEditorWatcher = new TextWatcher() 
-		{
-	        
-	        public void beforeTextChanged(CharSequence s, int start, int count, int after)
-	        {
-	        	//This is empty method and will not be used by the app.
-	        }
-
-	        public void onTextChanged(CharSequence s, int start, int before, int count)
-	        {
-	        	//This is empty method and will not be used by the app.
-	        }
-
-	        public void afterTextChanged(Editable s)
-	        {
-	        	if(s.toString().matches(""))
-	        	{
-	        		sendButton.setEnabled(false);
-	        	}
-	        	else
-	        	{
-	        		sendButton.setEnabled(true);
-	        	}
-	        }
-		};
 		
 		//
 		/// ISimpleDiscoveryListner overridden methods.
