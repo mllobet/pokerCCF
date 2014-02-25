@@ -29,5 +29,10 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 package lo.wolo.pokerccf;
 
 public class Constants {
-
+	public static final int RAISE = 0x01;
+	public static final int FOLD = 0x02;
+	public static final int CHECK = 0x04;
+	public static final int CALL = 0x08;
+	public static final int ALLIN = 0x10;
+	public static final int BET = 0x20;
 }
