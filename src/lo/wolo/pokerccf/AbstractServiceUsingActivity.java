@@ -27,7 +27,7 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISE
 OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-package com.intel.multiconnect;
+package lo.wolo.pokerccf;
 
 import java.util.EnumSet;
 
@@ -66,7 +66,7 @@ import com.intel.stc.utility.StcDiscoveryNode;
 public abstract class AbstractServiceUsingActivity extends Activity implements IStcServInetClient, ISimpleDiscoveryListener,StcDiscoveryNodeUpdateEventListener 
 {
 	public static final String LOGC = "PokerCCF";
-	public static final String ServiceIntent = "com.intel.multiconnect.CCFManager";
+	public static final String ServiceIntent = "lo.wolo.pokerccf.CCFManager";
 	
 	private static final int STCLIB_ACTIVITY_REQUEST = 23;
 

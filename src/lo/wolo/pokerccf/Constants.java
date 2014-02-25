@@ -26,15 +26,8 @@ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+package lo.wolo.pokerccf;
 
-package com.intel.multiconnect;
+public class Constants {
 
-/**
- * Interface from the ReadEngine and WriteEngine back to the hosting Service.
- * <p>
- * There is no c3 specific code here.
- */
-public interface IServiceIOListener {
-	void lineReceived( String line );
-	void remoteDisconnect();
 }

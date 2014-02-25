@@ -26,7 +26,7 @@ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-package com.intel.multiconnect;
+package lo.wolo.pokerccf;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +45,7 @@ import com.intel.stc.utility.StcApplicationId;
  */
 public class MultiConnectRegisterApp extends AppRegisterService
 {
-	public static final String		LAUNCH_INTENT		= "com.intel.multiconnect";
+	public static final String		LAUNCH_INTENT		= "lo.wolo.pokerccf";
 	public static final String		appId				= "E8891BDB-B4ED-422C-A955-33AD0D39CE06";
 	// TODO Generate Simple Chat Keys
 	private static final String		clientId			= "deGah1hWqd2pKpG8Q0X4QX0nRaIQM2uA";

@@ -27,7 +27,7 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISE
 OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-package com.intel.multiconnect;
+package lo.wolo.pokerccf;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -26,37 +26,25 @@ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-package com.intel.multiconnect;
+package lo.wolo.pokerccf;
 
-import com.intel.stc.utility.StcDiscoveryNode;
+import java.util.ArrayList;
 
 /**
- * Wrapper class to bind the instance of StcDiscoveryNode.
- * This will contain Node information along with subscription status.
+ * Listener class to listen between CCFManager(Service) and Activity classes.
+ *
  */
-public class NodeWrapper {
+public interface ISimpleDiscoveryListener {
 
-//	private String mNodeName = null;
-	private StcDiscoveryNode mNode =null;
-	private boolean mStatus = false;
+	//This will inform sessionlist getting updated.
+	void sessionsDiscovered();
 	
-	public NodeWrapper(StcDiscoveryNode node, boolean status) {
-		this.mNode = node;
-		this.mStatus = status;
-	}
-
-	//To retrieve StcDiscoveryNode Name.
-	public String getNodeName(){
-		return mNode.getName();
-	}
+	//This will inform chatlist getting updated.
+	void updatedChatList(String line);
 	
-	//To retrieve StcDiscoveryNode status.
-	public boolean getNodeStatus(){
-		return mStatus;
-	}
+	//This will inform StcDiscoveryNodeList getting updated.
+	void updateDiscoveryNodeList(ArrayList<NodeWrapper> discoveryNodeList);
 	
-	//To retrieve StcDiscoveryNode instance.
-	public StcDiscoveryNode getInstance(){
-		return mNode;
-	}
+	//This will inform to invalidate the sessionlist.
+	void invalidateSessionList();
 }

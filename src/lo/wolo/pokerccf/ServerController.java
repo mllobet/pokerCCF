@@ -26,7 +26,7 @@ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-package com.intel.multiconnect;
+package lo.wolo.pokerccf;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -55,18 +55,15 @@ import com.intel.stc.events.StcException;
 import com.intel.stc.lib.StcLib;
 import com.intel.stc.lib.StcLib.NodeFlags;
 
-public class ClientController extends AbstractServiceUsingActivity implements OnClickListener{
+public class ServerController extends AbstractServiceUsingActivity implements OnClickListener{
 
-	private SessionAdapter sessionAdapter = null;
-	//private ListView sessionList = null;
+	private SessionAdapter	sessionAdapter = null;
+	private ListView sessionList = null;
+	private TextView sessionEmptyText = null;
 	private ListView chatList = null;
 	ChatAdapter chatAdapter = null;
-	private Button raiseButton = null;
-	private Button foldButton = null;
-	private Button checkButton = null;
-	private Button callButton = null;
-	private Button allinButton = null;
-	private Button betButton = null;
+	private Button sendButton = null;
+	private EditText chatText = null;
 	private Button discoveryNodesButton = null;
 	private Dialog platformStartAlert;
 	
@@ -75,25 +72,20 @@ public class ClientController extends AbstractServiceUsingActivity implements On
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		setContentView(R.layout.activity_clientcontroller);
+		setContentView(R.layout.activity_ccfuicontroller);
 		
-		raiseButton = (Button)findViewById(R.id.raiseButton);
-		raiseButton.setOnClickListener(this);
-
-		foldButton = (Button)findViewById(R.id.foldButton);
-		foldButton.setOnClickListener(this);
-
-		checkButton = (Button)findViewById(R.id.checkButton);
-		checkButton.setOnClickListener(this);
-
-		callButton = (Button)findViewById(R.id.callButton);
-		callButton.setOnClickListener(this);
-
-		allinButton = (Button)findViewById(R.id.allinButton);
-		allinButton.setOnClickListener(this);
-
-		betButton = (Button)findViewById(R.id.betButton);
-		betButton.setOnClickListener(this);
+		sessionList = (ListView)findViewById(R.id.sessionList);
+		sessionEmptyText = (TextView)findViewById(R.id.sessionListEmptyText);
+		sessionList.setEmptyView(sessionEmptyText);
+		
+		sendButton = (Button)findViewById(R.id.sendButton);
+		sendButton.setOnClickListener(this);
+		chatText = (EditText)findViewById(R.id.chatText);
+		chatText.addTextChangedListener(mTextEditorWatcher);
+		
+		chatList = (ListView)findViewById(R.id.chatList);
+		chatAdapter = new ChatAdapter(this);
+		chatList.setAdapter(chatAdapter);
 		
 		discoveryNodesButton = (Button)findViewById(R.id.discoveryButton);
 		discoveryNodesButton.setOnClickListener(this);
@@ -132,26 +124,26 @@ public class ClientController extends AbstractServiceUsingActivity implements On
 	public void onClick(View view) {
 		switch(view.getId()){
 		
-		//case R.id.sendButton :
-			//final String temp = chatText.getText().toString();
-			//if(temp!=null && !temp.equals("")){
-				//serviceManager.postToConnections(temp);
-				//myHandler.post(new Runnable() {
-					//@Override
-					//public void run() {
-						//if(CCFManager.connection_Counter>0){
-							//chatAdapter.addChatLine("Me : "+temp);
-							//chatAdapter.notifyDataSetChanged();
-						//}else{
-							//displayNoConnectiondialog();
-						//}
-						//chatText.setText(null);
-					//}
-				//});
-			//}
-			//break;
+		case R.id.sendButton :
+			final String temp = chatText.getText().toString();
+			if(temp!=null && !temp.equals("")){
+				serviceManager.postToConnections(temp);
+				myHandler.post(new Runnable() {
+					@Override
+					public void run() {
+						if(CCFManager.connection_Counter>0){
+							chatAdapter.addChatLine("Me : "+temp);
+							chatAdapter.notifyDataSetChanged();
+						}else{
+							displayNoConnectiondialog();
+						}
+						chatText.setText(null);
+					}
+				});
+			}
+			break;
 		case R.id.discoveryButton :
-			Intent intent = new Intent(ClientController.this,DiscoveryNodeActivity.class);
+			Intent intent = new Intent(ServerController.this,DiscoveryNodeActivity.class);
 			startActivity(intent);
 			break;
 		}
@@ -159,7 +151,7 @@ public class ClientController extends AbstractServiceUsingActivity implements On
 	
 		//Display dialog, if no sessions are connected and user tries to send message
 		private void displayNoConnectiondialog(){
-			final AlertDialog.Builder builder = new AlertDialog.Builder(ClientController.this);
+			final AlertDialog.Builder builder = new AlertDialog.Builder(ServerController.this);
 			builder.setTitle("Warning");
 			builder.setMessage("No sessions are connected.");
 			builder.setCancelable(true);
@@ -189,7 +181,7 @@ public class ClientController extends AbstractServiceUsingActivity implements On
 					try {
 						if(lib!=null && !lib.isUnboxed()){
 							lib.setUserName(android.os.Build.MANUFACTURER+" "+android.os.Build.MODEL);
-							lib.setSessionName("Android "+ (isTablet(ClientController.this)?"Tablet" : "Phone"));
+							lib.setSessionName("Android "+ (isTablet(ServerController.this)?"Tablet" : "Phone"));
 							lib.setAvatar(BitmapFactory.decodeResource(getResources(), R.drawable.generic_avatar50x50));
 						}
 					} catch (StcException e) {
@@ -199,7 +191,7 @@ public class ClientController extends AbstractServiceUsingActivity implements On
 						platformStartAlert.dismiss();
 					}
 					
-					//sessionList.setAdapter(sessionAdapter);
+					sessionList.setAdapter(sessionAdapter);
 				}
 			});
 		}
@@ -243,14 +235,14 @@ public class ClientController extends AbstractServiceUsingActivity implements On
 
 	        public void afterTextChanged(Editable s)
 	        {
-				//if(s.toString().matches(""))
-				//{
-					//sendButton.setEnabled(false);
-				//}
-				//else
-				//{
-					//sendButton.setEnabled(true);
-				//}
+	        	if(s.toString().matches(""))
+	        	{
+	        		sendButton.setEnabled(false);
+	        	}
+	        	else
+	        	{
+	        		sendButton.setEnabled(true);
+	        	}
 	        }
 		};
 		

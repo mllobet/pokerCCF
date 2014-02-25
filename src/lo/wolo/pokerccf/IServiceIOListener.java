@@ -26,25 +26,15 @@ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-package com.intel.multiconnect;
 
-import java.util.ArrayList;
+package lo.wolo.pokerccf;
 
 /**
- * Listener class to listen between CCFManager(Service) and Activity classes.
- *
+ * Interface from the ReadEngine and WriteEngine back to the hosting Service.
+ * <p>
+ * There is no c3 specific code here.
  */
-public interface ISimpleDiscoveryListener {
-
-	//This will inform sessionlist getting updated.
-	void sessionsDiscovered();
-	
-	//This will inform chatlist getting updated.
-	void updatedChatList(String line);
-	
-	//This will inform StcDiscoveryNodeList getting updated.
-	void updateDiscoveryNodeList(ArrayList<NodeWrapper> discoveryNodeList);
-	
-	//This will inform to invalidate the sessionlist.
-	void invalidateSessionList();
+public interface IServiceIOListener {
+	void lineReceived( String line );
+	void remoteDisconnect();
 }

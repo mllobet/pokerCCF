@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.intel.multiconnect"
+    package="lo.wolo.pokerccf"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -36,7 +36,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.intel.multiconnect.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="nosensor" >
             <intent-filter>
@@ -45,34 +45,34 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
-                <action android:name="com.intel.multiconnect" />
+                <action android:name="lo.wolo.pokerccf" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
         <activity
-            android:name="com.intel.multiconnect.ClientController"
+            android:name=".ClientController"
             android:screenOrientation="nosensor" >
         </activity>
 
         <activity
-            android:name="com.intel.multiconnect.ServerController"
+            android:name=".ServerController"
             android:screenOrientation="nosensor" >
         </activity>
 
         <service
-            android:name="com.intel.multiconnect.CCFManager"
+            android:name=".CCFManager"
             android:exported="true" >
             <intent-filter>
-                <action android:name="com.intel.multiconnect.CCFManager" />
+                <action android:name=".CCFManager" />
             </intent-filter>
         </service>
         <service
-            android:name="com.intel.multiconnect.MultiConnectRegisterApp"
+            android:name=".MultiConnectRegisterApp"
             android:enabled="true" >
             <intent-filter>
-                <action android:name="com.intel.multiconnect.REGISTER_APP" />
+                <action android:name=".REGISTER_APP" />
             </intent-filter>
         </service>
 
@@ -93,12 +93,12 @@
             android:name="com.intel.inproclib.InProcService"
             android:permission="android.permission.INTERNET" >
             <intent-filter>
-                <action android:name="com.intel.multiconnect.IN_PROC_SERVICE" />
+                <action android:name=".IN_PROC_SERVICE" />
             </intent-filter>
         </service>
 
         <activity
-            android:name="com.intel.multiconnect.DiscoveryNodeActivity"
+            android:name=".DiscoveryNodeActivity"
             android:label="@string/title_activity_discovery_node" 
             android:screenOrientation="nosensor">
         </activity>

@@ -26,7 +26,7 @@ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-package com.intel.multiconnect;
+package lo.wolo.pokerccf;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,7 +44,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.intel.multiconnect.CCFManager.SessionState;
+import lo.wolo.pokerccf.CCFManager.SessionState;
 import com.intel.stc.utility.StcSession;
 
 /***

@@ -26,117 +26,69 @@ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-
-package com.intel.multiconnect;
+package lo.wolo.pokerccf;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.OutputStream;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import android.util.Log;
 
 /***
- * Handles reading from the input stream and parsing into strings that are stored
- * in an ArrayList.
+ * Handles writing to the output stream.
  * <p>
  * There is nothing c3 specific here.
  */
-public class ReadEngine implements Runnable 
-{	
+public class WriteEngine implements Runnable 
+{
 	static final String LOGC = "PokerCCF";
 	
-	InputStream stream;
 	IServiceIOListener listener;
+	OutputStream stream;
+	BlockingQueue<String> queue;
 	Thread thread;
 	volatile boolean running = true;
-	ArrayList<String>lines = new ArrayList<String>();
 	
-	public ReadEngine( InputStream stream, IServiceIOListener listener )
+	public WriteEngine(OutputStream stream, IServiceIOListener listener)
 	{
-		this.stream = stream;
 		this.listener = listener;
+		this.stream = stream;
+		queue = new LinkedBlockingQueue<String>();
 		thread = new Thread(this);
 		thread.setDaemon(true);
-		thread.setName("Read Engine Thread");
+		thread.setName("Write Engine Thread");
 		thread.start();
 	}
 	
-	private void addLine(StringBuffer sb)
+	public void writeString(String s)
 	{
-		String line = sb.toString();
-//		int count;
-		synchronized( lines )
-		{
-			lines.add(line);
-//			count = lines.size();
-		}
-		listener.lineReceived(line);
-	}
-	
-	public String getLine(int number)
-	{
-		if(number< 0)
-			return "";
-		synchronized(lines)
-		{
-			if(number >= lines.size())
-				return "";
-			
-			return lines.get(number);
-		}
-	}
-	
-	public List<String> getLines()
-	{
-		synchronized(lines) {
-			return new ArrayList<String>(lines);
-		}
-	}
-	
-	public void run() 
-	{
-		try {
-			char buffer[] = new char[1024];
-			InputStreamReader reader = new InputStreamReader(stream, "US-ASCII");
-			StringBuffer sb = new StringBuffer();
-			while( running )
-			{
-				int numBytes = reader.read(buffer);
-				if( numBytes < 0 )
-				{
-					running = false;
-					listener.remoteDisconnect();
-				}
-				else 
-				{
-					sb.append(buffer, 0, numBytes);
-					addLine(sb);
-					sb = new StringBuffer();
-					// for( int i = 0 ; i < numBytes ; i++ )
-					// {
-					// if( buffer[i] == '\r' )
-					// {
-					// addLine(sb);
-					// sb = new StringBuffer();
-					// }
-					// else
-					// sb.append(buffer[i]);
-					// }
-				}
-			}
-		} catch(UnsupportedEncodingException e) {
-			Log.e(LOGC, "unsupported encoding?");
-		} catch(IOException e) {	
-			listener.remoteDisconnect();
-			running = false;
-		}
+		queue.add(s);
 	}
 	
 	public void stop()
 	{
 		running = false;
+		queue.add(" ");
+	}
+
+	public void run() 
+	{
+		
+		while( running )
+		{
+			try {
+				String s = queue.take();
+				if( running ) {
+					stream.write(s.getBytes());
+				}
+			} catch(InterruptedException e) {
+				Log.e(LOGC, e.toString() );
+				listener.remoteDisconnect();
+			} catch(IOException e) {
+				Log.i(LOGC, e.toString() );
+				listener.remoteDisconnect();
+			}
+		}
 	}
 }
