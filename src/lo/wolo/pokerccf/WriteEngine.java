@@ -81,6 +81,7 @@ public class WriteEngine implements Runnable
 				String s = queue.take();
 				if( running ) {
 					stream.write(s.getBytes());
+					Log.d("IO","W: " + s);
 				}
 			} catch(InterruptedException e) {
 				Log.e(LOGC, e.toString() );

@@ -73,6 +73,7 @@ public class ReadEngine implements Runnable
 			lines.add(line);
 //			count = lines.size();
 		}
+		Log.d("IO","R: " + line);
 		listener.lineReceived(line);
 	}
 	

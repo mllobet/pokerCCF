@@ -50,6 +50,9 @@ import lo.wolo.pokerccf.RemoteUser;
 import lo.wolo.pokerccf.ServerController;
 import lo.wolo.pokerengine.actions.Action;
 import lo.wolo.pokerengine.actions.BetAction;
+import lo.wolo.pokerengine.actions.CallAction;
+import lo.wolo.pokerengine.actions.CheckAction;
+import lo.wolo.pokerengine.actions.FoldAction;
 import lo.wolo.pokerengine.actions.RaiseAction;
 
 /**
@@ -418,6 +421,7 @@ public class Table {
 						e.printStackTrace();
 					}
                 	actorClient.setNextAction(serviceManager.actionList.get(actorID));
+                	serviceManager.actionList.set(actorID,null);
                 }
                 //Action has been set
                 
@@ -432,8 +436,7 @@ public class Table {
                 Iterator<Action> it = allowedActions.iterator();
                 boolean found = false;
                 while (it.hasNext() && !found)
-                	if (it.next().equals(action))
-                		found = true;
+                	found = it.next().equals(action);
                 if (!found)
                 	throw new IllegalStateException(String.format("Player '%s' acted with illegal %s action", actor, action));
 
@@ -444,9 +447,9 @@ public class Table {
 //                    }
 //                }
                 playersToAct--;
-                if (action == Action.CHECK) {
+                if (action instanceof CheckAction) {
                     // Do nothing.
-                } else if (action == Action.CALL) {
+                } else if (action instanceof CallAction) {
                     int betIncrement = bet - actor.getBet();
                     if (betIncrement > actor.getCash()) {
                         betIncrement = actor.getCash();
@@ -499,7 +502,7 @@ public class Table {
                         // Max. number of raises reached; other players get one more turn.
                         playersToAct = activePlayers.size() - 1;
                     }
-                } else if (action == Action.FOLD) {
+                } else if (action instanceof FoldAction) {
                     actor.setCards(null);
                     activePlayers.remove(actor);
                     actorPosition--;

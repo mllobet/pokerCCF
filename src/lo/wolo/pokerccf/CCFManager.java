@@ -30,6 +30,7 @@ package lo.wolo.pokerccf;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -449,6 +450,7 @@ public class CCFManager extends StcServiceInet implements StcSessionUpdateListen
 		//This will set the callback to read the message sent by remote user.
 		public void chatReceived(String username, String line){
 			Log.d(TAG,"chatReceived: username: " + username + " line: " + line);
+			
 			//PARSE
 			parseCommand(username,line);
 			synchronized (listeners) {
@@ -460,6 +462,8 @@ public class CCFManager extends StcServiceInet implements StcSessionUpdateListen
 		/** parses a command received from a user */
 		private void parseCommand(String username, String line) {
 			int id = getRemoteSessionID(username);
+			//Sends 0 allowed actions
+			sendActionsAllowed(id,new HashSet<Action>());
 			Log.d(TAG,"Username: " + username + " maps to id: " + id);
 			
 			String [] tokens = line.split(" ");
@@ -495,9 +499,11 @@ public class CCFManager extends StcServiceInet implements StcSessionUpdateListen
 		private int getRemoteSessionID(String username) {
 			boolean found = false;
 			int i = 0;
-			while ( !found && i < remoteUsersList.size())
+			while ( !found && i < remoteUsersList.size()) {
 				if (remoteUsersList.get(i).getSession().getUserName().equals(username))
 					return i;	
+				++i;
+			}
 			return -1;
 		}
 		
@@ -610,5 +616,24 @@ public class CCFManager extends StcServiceInet implements StcSessionUpdateListen
 			Log.d("CCFManager", "remoteUserList return: " + remoteUsersList.toString());
 			Log.d("CCFManager", "Size: " + Integer.toString(remoteUsersList.size()));
 			return remoteUsersList;
+		}
+		
+		public void sendActionsAllowed(int id, Set<Action> allowedActions) {
+			WriteEngine wEngine = getRemoteUsers().get(id).getWriter();
+			wEngine.writeString("cmds " + encodeActions(allowedActions));
+			try {
+				Thread.sleep(300);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		private String encodeActions(Set<Action> s) {
+			int out = 0;
+			for (Action a : s) {
+				out += a.getEncode();
+			}
+			return Integer.toString(out);
 		}
 }

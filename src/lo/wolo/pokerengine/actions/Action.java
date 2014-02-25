@@ -17,6 +17,7 @@
 
 package lo.wolo.pokerengine.actions;
 
+import android.util.Log;
 import lo.wolo.pokerccf.Constants;
 
 /**
@@ -147,6 +148,8 @@ public abstract class Action {
     }
     
     public boolean equals(Action a) {
+    	Log.d("Comparing","a: " + a.getName() + " this: " + this.getName());
+    	Log.d("Comparing",""+this.getName().equals(a.getName()));
     	return this.getName().equals(a.getName());
     }
 
