@@ -50,6 +50,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.ImageView;
 
 import com.intel.stc.events.StcException;
 import com.intel.stc.lib.StcLib;
@@ -68,6 +69,8 @@ public class ClientController extends AbstractServiceUsingActivity implements On
 	private Button allinButton = null;
 	private Button betButton = null;
 	private Button discoveryNodesButton = null;
+	private ImageView leftCardView = null;
+	private ImageView rightCardView = null;
 	private Dialog platformStartAlert;
 	
 /*Start**************Activity Lifecycle calls**********/
@@ -97,6 +100,9 @@ public class ClientController extends AbstractServiceUsingActivity implements On
 		
 		discoveryNodesButton = (Button)findViewById(R.id.discoveryButton);
 		discoveryNodesButton.setOnClickListener(this);
+		
+		leftCardView = (ImageView)findViewById(R.id.leftCardImage);
+		rightCardView = (ImageView)findViewById(R.id.rightCardImage);
 		
 		doStartService();
 		
@@ -153,6 +159,12 @@ public class ClientController extends AbstractServiceUsingActivity implements On
 		case R.id.discoveryButton :
 			Intent intent = new Intent(ClientController.this,DiscoveryNodeActivity.class);
 			startActivity(intent);
+			break;
+		
+		
+		//Sample communication button
+		case R.id.raiseButton :
+			serviceManager.postToConnections(Integer.toString(Constants.RAISE));
 			break;
 		}
 	}
