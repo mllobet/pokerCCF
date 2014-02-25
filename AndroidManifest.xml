@@ -36,7 +36,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="lo.wolo.pokerccf.MainActivity"
+            android:name="lo.wolo.pokerccf.ServerController"
             android:label="@string/app_name"
             android:screenOrientation="nosensor" >
             <intent-filter>
@@ -44,21 +44,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <activity
-            android:name="lo.wolo.pokerccf.ClientController"
-            android:screenOrientation="nosensor" >
-            <intent-filter>
-                <action android:name="lo.wolo.pokerccf" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name="lo.wolo.pokerccf.ServerController"
-            android:screenOrientation="nosensor" >
             <intent-filter>
                 <action android:name="lo.wolo.pokerccf" />
 
