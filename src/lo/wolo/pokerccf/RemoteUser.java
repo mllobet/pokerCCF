@@ -71,7 +71,7 @@ public class RemoteUser implements IServiceIOListener{
 	//To receive the incoming message from remote Session.
 	@Override
 	public void lineReceived(String line) {
-		manager.chatReceived(remoteSession.getUserName()+" : "+line);
+		manager.chatReceived(remoteSession.getUserName(),line);
 	}
 
 	//To disconnect the connecton.

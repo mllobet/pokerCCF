@@ -61,6 +61,8 @@ import com.intel.stc.lib.StcLib.NodeFlags;
 
 public class ServerController extends AbstractServiceUsingActivity implements OnClickListener{
 
+	private static final String TAG = "ServerController";
+
 	private SessionAdapter	sessionAdapter = null;
 	private ListView sessionList = null;
 	private TextView sessionEmptyText = null;
@@ -69,7 +71,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 	private Button discoveryNodesButton = null;
 	private Button startButton = null;
 	private Dialog platformStartAlert;
-	
+
 	private ServerController myself;
 
 	/*Start**************Activity Lifecycle calls**********/
@@ -78,7 +80,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 		super.onCreate(savedInstanceState);
 
 		myself = this;
-		
+
 		setContentView(R.layout.activity_ccfuicontroller);
 
 		sessionList = (ListView)findViewById(R.id.sessionList);
@@ -136,43 +138,49 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 		case R.id.startButton :
 			//HERE IS WHERE THE HACK HAPPENS
 			Thread t = new Thread(new Runnable() {
-				
+
 				/** The size of the big blind. */
-		        private  final int BIG_BLIND = 10;
-		        
-		        /** The starting cash per player. */
-		        private  final int STARTING_CASH = 500;
-		        
-		        /** Table type (betting structure). */
-		        private final TableType TABLE_TYPE = TableType.NO_LIMIT;
-		        
-		        /** The table. */
-		        private Table table;
-		        
-		        /** The players */
-		        private ArrayList<Player> players;
-		        
-			    public void run() {
-			    	
-			        
-			        /** Initialize all the players **/
-			        ArrayList<RemoteUser> remoteUsersList = serviceManager.getRemoteUsers();
-			    	players = new ArrayList<Player>(remoteUsersList.size());
-			        for (int i = 0; i < remoteUsersList.size(); ++i)
-			        	players.set(i, new Player(Integer.toString(i), STARTING_CASH, new ClientCCF()));
-			        
-			        /** Initialize the table **/
-			        table = new Table(TABLE_TYPE, BIG_BLIND, serviceManager, myself);
-			        for (Player player : players)
-			            table.addPlayer(player);
-			        
-			        table.run();	    	
-			    }
+				private  final int BIG_BLIND = 10;
+
+				/** The starting cash per player. */
+				private  final int STARTING_CASH = 500;
+
+				/** Table type (betting structure). */
+				private final TableType TABLE_TYPE = TableType.NO_LIMIT;
+
+				/** The table. */
+				private Table table;
+
+				/** The players */
+				private ArrayList<Player> players;
+
+				public void run() {
+
+
+					/** Initialize all the players **/
+					ArrayList<RemoteUser> remoteUsersList = serviceManager.getRemoteUsers();
+					int remoteUsersSize = remoteUsersList.size();
+					Log.d("ServerController","remoteUsers hash: " + remoteUsersList.toString());
+					Log.d("ServerController","remoteUsers.size(): " + Integer.toString(remoteUsersSize));
+					players = new ArrayList<Player>();
+					for (int i = 0; i < remoteUsersSize; ++i)
+						players.add(null);
+
+					Log.d("ServerController","players size: " + Integer.toString(players.size()));
+					for (int i = 0; i < players.size(); ++i)
+						players.set(i, new Player(Integer.toString(i), STARTING_CASH, new ClientCCF()));
+
+					/** Initialize the table **/
+					table = new Table(TABLE_TYPE, BIG_BLIND, serviceManager, myself);
+					for (Player player : players)
+						table.addPlayer(player);
+
+					table.run();	    	
+				}
 			});
 			t.start();
 			break;
 		}
-		
 	}
 
 	//Display dialog, if no sessions are connected and user tries to send message
@@ -323,17 +331,45 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 				& Configuration.SCREENLAYOUT_SIZE_MASK)    
 				>= Configuration.SCREENLAYOUT_SIZE_LARGE; 
 	}
-	
+
 	public void sendActionsAllowed(int id, Set<Action> allowedActions) {
+		Log.d(TAG,"sendingActionsAllowed");
 		WriteEngine wEngine = serviceManager.getRemoteUsers().get(id).getWriter();
 		wEngine.writeString(encodeActions(allowedActions));
+		try {
+			Thread.sleep(300);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-	
+
 	private String encodeActions(Set<Action> s) {
 		int out = 0;
 		for (Action a : s) {
 			out += a.getEncode();
 		}
 		return Integer.toString(out);
+	}
+
+	public void sendCards(int id, Card[] cards) {
+		String out = "";
+		boolean first = true;
+		for (Card c : cards) {
+			out += c.hashCode();
+			if (first) {
+				out += " ";
+				first = false;
+			}
+		}
+		Log.d(TAG,"sendingCards: " + out);
+		WriteEngine wEngine = serviceManager.getRemoteUsers().get(id).getWriter();
+		wEngine.writeString(out);
+		try {
+			Thread.sleep(300);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

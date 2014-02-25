@@ -62,6 +62,10 @@ public class ClientCCF implements Client {
 	public void setNextAction(Action a) {
 		this.nextAction = a;
 	}
+	
+	public Action getNextAction() {
+		return nextAction;
+	}
 
 	@Override
 	public Action act(int minBet, int currentBet, Set<Action> allowedActions) {

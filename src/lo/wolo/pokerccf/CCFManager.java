@@ -90,10 +90,11 @@ public class CCFManager extends StcServiceInet implements StcSessionUpdateListen
 	private ArrayList<NodeWrapper> discoveryNodeList = new ArrayList<NodeWrapper>();
 	
 	public HashMap<UUID, RemoteUser> remoteSessionsMap = new HashMap<UUID, RemoteUser>();
-	private ArrayList<RemoteUser> remoteUsersList = new ArrayList<RemoteUser>();
+	public ArrayList<RemoteUser> remoteUsersList = new ArrayList<RemoteUser>();
 	public static int connection_Counter = 0;
 	public static final int MAX_CONNECTION = 10;
 
+	private static final String TAG = "CCFManager";
 	
 	 public enum SessionState{
 		CONNECTED,
@@ -162,6 +163,7 @@ public class CCFManager extends StcServiceInet implements StcSessionUpdateListen
 					Log.d("CCFManager","User: added");
 					remoteUsersList.add(user);
 					Log.d("CCFManager", "size: " + Integer.toString(remoteUsersList.size()));
+					Log.d("CCFManager", remoteUsersList.toString());
 				} catch (StcException e) {
 					Log.e(LOGC, e.toString());
 				}
@@ -442,11 +444,31 @@ public class CCFManager extends StcServiceInet implements StcSessionUpdateListen
 		}
 		
 		//This will set the callback to read the message sent by remote user.
-		public void chatReceived(String line){
+		public void chatReceived(String username, String line){
+			Log.d(TAG,"chatReceived: username: " + username + " line: " + line);
+			//PARSE
+					
 			synchronized (listeners) {
 				for (ISimpleDiscoveryListener listen : listeners)
-					listen.updatedChatList(line);
+					listen.updatedChatList(username + " : " + line);
 			}
+		}
+		
+		/** parses a command received from a user */
+		private void parseCommand(String username, String line) {
+			int id = getRemoteSessionID(username);
+			Log.d(TAG,"Username: " + username + " maps to id: " + id);
+			
+		}
+		
+		/** Returns the index of a given RemoteSession username in the LinkedList */
+		private int getRemoteSessionID(String username) {
+			boolean found = false;
+			int i = 0;
+			while ( !found && i < remoteUsersList.size())
+				if (remoteUsersList.get(i).getSession().getUserName().equals(username))
+					return i;	
+			return -1;
 		}
 		
 		//This will set the callback to terminate the connection
@@ -555,6 +577,8 @@ public class CCFManager extends StcServiceInet implements StcSessionUpdateListen
 		}
 		
 		public ArrayList<RemoteUser> getRemoteUsers() {
+			Log.d("CCFManager", "remoteUserList return: " + remoteUsersList.toString());
+			Log.d("CCFManager", "Size: " + Integer.toString(remoteUsersList.size()));
 			return remoteUsersList;
 		}
 }

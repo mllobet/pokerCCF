@@ -61,6 +61,8 @@ import lo.wolo.pokerengine.actions.RaiseAction;
  */
 public class Table {
     
+	private static final String TAG = "Table"; 
+	
     /** In fixed-limit games, the maximum number of raises per betting round. */
     private static final int MAX_RAISES = 3;
     
@@ -154,6 +156,7 @@ public class Table {
         for (Player player : players) {
             player.getClient().joinedTable(tableType, bigBlind, players);
         }
+        Log.d(TAG,"joined tables");
         dealerPosition = -1;
         actorPosition = -1;
         while (true) {
@@ -163,13 +166,15 @@ public class Table {
                     noOfActivePlayers++;
                 }
             }
+            Log.d(TAG,"Number of Active players: " + Integer.toString(noOfActivePlayers));
             if (noOfActivePlayers > 1) {
+            	Log.d(TAG,"Start Play hand");
                 playHand();
             } else {
                 break;
             }
         }
-        
+        Log.d(TAG,"Game Over");
         // Game over.
         board.clear();
         pots.clear();
@@ -204,6 +209,7 @@ public class Table {
         
         // Flop.
         if (activePlayers.size() > 1) {
+        	Log.d(TAG,"ActivePlayers: " + Integer.toString(activePlayers.size()));
             bet = 0;
             dealCommunityCards("Flop", 3);
             minBet = bigBlind;
@@ -322,7 +328,9 @@ public class Table {
     private void dealHoleCards() {
         for (Player player : activePlayers) {
             player.setCards(deck.deal(2));
+            serverController.sendCards(Integer.parseInt(player.getName()), player.getCards());
         }
+        
         System.out.println();
         notifyPlayersUpdated(false);
         notifyMessage("%s deals the hole cards.", dealer);
@@ -348,6 +356,7 @@ public class Table {
      * Performs a betting round.
      */
     private void doBettingRound() {
+    	Log.d(TAG,"Betting Round started");
         // Determine the number of active players.
         int playersToAct = activePlayers.size();
         // Determine the initial player and bet size.
@@ -381,9 +390,11 @@ public class Table {
                 Set<Action> allowedActions = getAllowedActions(actor);
                 //Send Allowed Actions to remoteUsers
                 int actorID = Integer.parseInt(actor.getName());
+                Log.d(TAG,"actorID " + actorID);
                 RemoteUser actorRemoteUser = remoteUsers.get(actorID);
                 
                 if (actorRemoteUser.getsessionState() == CCFManager.SessionState.CONNECTED) {
+                	Log.d(TAG,"isConected");
                 	serverController.sendActionsAllowed(actorID,allowedActions);
                 } else {
                 	Log.d("Table","Actor: " + actor.getName() + " was NOTCONECTED");
@@ -394,6 +405,17 @@ public class Table {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+                
+                //Pool player's next action
+                while (((ClientCCF)actor.getClient()).getNextAction() == null) {
+                	try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+                }
+                //Action has been set
                 
                 action = actor.getClient().act(minBet, bet, allowedActions);
                 // Verify chosen action to guard against broken clients (accidental or on purpose).
