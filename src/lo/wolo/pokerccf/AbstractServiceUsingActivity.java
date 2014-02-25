@@ -113,7 +113,7 @@ public abstract class AbstractServiceUsingActivity extends Activity implements I
 	private void doBindService() {
 		if(!isBound)
 		{
-			Log.i(LOGC, "binding service" + mConnection.toString());
+			Log.i(LOGC, "binding service " + mConnection.toString());
 			Intent servIntent = new Intent(ServiceIntent);
 			isBound = bindService(servIntent, mConnection, 0);
 			if( !isBound )
