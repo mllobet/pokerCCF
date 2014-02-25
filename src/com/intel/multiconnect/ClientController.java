@@ -57,13 +57,16 @@ import com.intel.stc.lib.StcLib.NodeFlags;
 
 public class ClientController extends AbstractServiceUsingActivity implements OnClickListener{
 
-	private SessionAdapter	sessionAdapter = null;
-	private ListView sessionList = null;
-	private TextView sessionEmptyText = null;
+	private SessionAdapter sessionAdapter = null;
+	//private ListView sessionList = null;
 	private ListView chatList = null;
 	ChatAdapter chatAdapter = null;
-	private Button sendButton = null;
-	private EditText chatText = null;
+	private Button raiseButton = null;
+	private Button foldButton = null;
+	private Button checkButton = null;
+	private Button callButton = null;
+	private Button allinButton = null;
+	private Button betButton = null;
 	private Button discoveryNodesButton = null;
 	private Dialog platformStartAlert;
 	
@@ -72,20 +75,25 @@ public class ClientController extends AbstractServiceUsingActivity implements On
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		setContentView(R.layout.activity_ccfuicontroller);
+		setContentView(R.layout.activity_clientcontroller);
 		
-		sessionList = (ListView)findViewById(R.id.sessionList);
-		sessionEmptyText = (TextView)findViewById(R.id.sessionListEmptyText);
-		sessionList.setEmptyView(sessionEmptyText);
-		
-		sendButton = (Button)findViewById(R.id.sendButton);
-		sendButton.setOnClickListener(this);
-		chatText = (EditText)findViewById(R.id.chatText);
-		chatText.addTextChangedListener(mTextEditorWatcher);
-		
-		chatList = (ListView)findViewById(R.id.chatList);
-		chatAdapter = new ChatAdapter(this);
-		chatList.setAdapter(chatAdapter);
+		raiseButton = (Button)findViewById(R.id.raiseButton);
+		raiseButton.setOnClickListener(this);
+
+		foldButton = (Button)findViewById(R.id.foldButton);
+		foldButton.setOnClickListener(this);
+
+		checkButton = (Button)findViewById(R.id.checkButton);
+		checkButton.setOnClickListener(this);
+
+		callButton = (Button)findViewById(R.id.callButton);
+		callButton.setOnClickListener(this);
+
+		allinButton = (Button)findViewById(R.id.allinButton);
+		allinButton.setOnClickListener(this);
+
+		betButton = (Button)findViewById(R.id.betButton);
+		betButton.setOnClickListener(this);
 		
 		discoveryNodesButton = (Button)findViewById(R.id.discoveryButton);
 		discoveryNodesButton.setOnClickListener(this);
@@ -124,24 +132,24 @@ public class ClientController extends AbstractServiceUsingActivity implements On
 	public void onClick(View view) {
 		switch(view.getId()){
 		
-		case R.id.sendButton :
-			final String temp = chatText.getText().toString();
-			if(temp!=null && !temp.equals("")){
-				serviceManager.postToConnections(temp);
-				myHandler.post(new Runnable() {
-					@Override
-					public void run() {
-						if(CCFManager.connection_Counter>0){
-							chatAdapter.addChatLine("Me : "+temp);
-							chatAdapter.notifyDataSetChanged();
-						}else{
-							displayNoConnectiondialog();
-						}
-						chatText.setText(null);
-					}
-				});
-			}
-			break;
+		//case R.id.sendButton :
+			//final String temp = chatText.getText().toString();
+			//if(temp!=null && !temp.equals("")){
+				//serviceManager.postToConnections(temp);
+				//myHandler.post(new Runnable() {
+					//@Override
+					//public void run() {
+						//if(CCFManager.connection_Counter>0){
+							//chatAdapter.addChatLine("Me : "+temp);
+							//chatAdapter.notifyDataSetChanged();
+						//}else{
+							//displayNoConnectiondialog();
+						//}
+						//chatText.setText(null);
+					//}
+				//});
+			//}
+			//break;
 		case R.id.discoveryButton :
 			Intent intent = new Intent(ClientController.this,DiscoveryNodeActivity.class);
 			startActivity(intent);
@@ -191,7 +199,7 @@ public class ClientController extends AbstractServiceUsingActivity implements On
 						platformStartAlert.dismiss();
 					}
 					
-					sessionList.setAdapter(sessionAdapter);
+					//sessionList.setAdapter(sessionAdapter);
 				}
 			});
 		}
@@ -235,14 +243,14 @@ public class ClientController extends AbstractServiceUsingActivity implements On
 
 	        public void afterTextChanged(Editable s)
 	        {
-	        	if(s.toString().matches(""))
-	        	{
-	        		sendButton.setEnabled(false);
-	        	}
-	        	else
-	        	{
-	        		sendButton.setEnabled(true);
-	        	}
+				//if(s.toString().matches(""))
+				//{
+					//sendButton.setEnabled(false);
+				//}
+				//else
+				//{
+					//sendButton.setEnabled(true);
+				//}
 	        }
 		};
 		
