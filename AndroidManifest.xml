@@ -36,7 +36,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name="lo.wolo.pokerccf.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="nosensor" >
             <intent-filter>
@@ -44,6 +44,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name="lo.wolo.pokerccf.ClientController"
+            android:screenOrientation="nosensor" >
             <intent-filter>
                 <action android:name="lo.wolo.pokerccf" />
 
@@ -52,27 +57,27 @@
         </activity>
 
         <activity
-            android:name=".ClientController"
+            android:name="lo.wolo.pokerccf.ServerController"
             android:screenOrientation="nosensor" >
-        </activity>
+            <intent-filter>
+                <action android:name="lo.wolo.pokerccf" />
 
-        <activity
-            android:name=".ServerController"
-            android:screenOrientation="nosensor" >
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
 
         <service
-            android:name=".CCFManager"
+            android:name="lo.wolo.pokerccf.CCFManager"
             android:exported="true" >
             <intent-filter>
-                <action android:name=".CCFManager" />
+                <action android:name="lo.wolo.pokerccf.CCFManager" />
             </intent-filter>
         </service>
         <service
-            android:name=".MultiConnectRegisterApp"
+            android:name="lo.wolo.pokerccf.MultiConnectRegisterApp"
             android:enabled="true" >
             <intent-filter>
-                <action android:name=".REGISTER_APP" />
+                <action android:name="lo.wolo.pokerccf.REGISTER_APP" />
             </intent-filter>
         </service>
 
@@ -93,12 +98,12 @@
             android:name="com.intel.inproclib.InProcService"
             android:permission="android.permission.INTERNET" >
             <intent-filter>
-                <action android:name=".IN_PROC_SERVICE" />
+                <action android:name="lo.wolo.pokerccf.IN_PROC_SERVICE" />
             </intent-filter>
         </service>
 
         <activity
-            android:name=".DiscoveryNodeActivity"
+            android:name="lo.wolo.pokerccf.DiscoveryNodeActivity"
             android:label="@string/title_activity_discovery_node" 
             android:screenOrientation="nosensor">
         </activity>
