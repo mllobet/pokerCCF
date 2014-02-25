@@ -27,7 +27,7 @@ public class CallAction extends Action {
     /**
      * Constructor.
      */
-    /* package */ CallAction() {
+    public /* package */ CallAction() {
         super("Call", "calls");
     }
     

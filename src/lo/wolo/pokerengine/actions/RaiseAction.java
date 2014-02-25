@@ -40,4 +40,8 @@ public class RaiseAction extends Action {
         return String.format("Raise(%d)", getAmount());
     }
     
+    public boolean equals(RaiseAction ra) {
+    	return ra.getName().equals(this.getName()) && ra.getAmount() == this.getAmount();
+    }
+    
 }

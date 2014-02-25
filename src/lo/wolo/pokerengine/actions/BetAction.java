@@ -40,4 +40,8 @@ public class BetAction extends Action {
         return String.format("Bet(%d)", getAmount());
     }
     
+    public boolean equals(BetAction ba) {
+    	return ba.getName().equals(this.getName()) && ba.getAmount() == this.getAmount();
+    }
+    
 }

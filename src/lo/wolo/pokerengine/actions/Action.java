@@ -145,5 +145,9 @@ public abstract class Action {
     public String toString() {
         return name;
     }
+    
+    public boolean equals(Action a) {
+    	return this.getName().equals(a.getName());
+    }
 
 }

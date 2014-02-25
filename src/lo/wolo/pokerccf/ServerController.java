@@ -163,9 +163,15 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 					Log.d("ServerController","remoteUsers hash: " + remoteUsersList.toString());
 					Log.d("ServerController","remoteUsers.size(): " + Integer.toString(remoteUsersSize));
 					players = new ArrayList<Player>();
-					for (int i = 0; i < remoteUsersSize; ++i)
+					serviceManager.actionList = new ArrayList<Action>();
+					//THIS WAS A NASTY BUG
+					for (int i = 0; i < remoteUsersSize; ++i) {
 						players.add(null);
-
+						serviceManager.actionList.add(null);
+					}
+					
+					
+					
 					Log.d("ServerController","players size: " + Integer.toString(players.size()));
 					for (int i = 0; i < players.size(); ++i)
 						players.set(i, new Player(Integer.toString(i), STARTING_CASH, new ClientCCF()));
@@ -335,7 +341,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 	public void sendActionsAllowed(int id, Set<Action> allowedActions) {
 		Log.d(TAG,"sendingActionsAllowed");
 		WriteEngine wEngine = serviceManager.getRemoteUsers().get(id).getWriter();
-		wEngine.writeString(encodeActions(allowedActions));
+		wEngine.writeString("cmds " + encodeActions(allowedActions));
 		try {
 			Thread.sleep(300);
 		} catch (InterruptedException e) {
@@ -364,7 +370,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 		}
 		Log.d(TAG,"sendingCards: " + out);
 		WriteEngine wEngine = serviceManager.getRemoteUsers().get(id).getWriter();
-		wEngine.writeString(out);
+		wEngine.writeString("cards " + out);
 		try {
 			Thread.sleep(300);
 		} catch (InterruptedException e) {

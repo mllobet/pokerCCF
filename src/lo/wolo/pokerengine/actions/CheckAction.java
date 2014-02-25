@@ -27,7 +27,7 @@ public class CheckAction extends Action {
     /**
      * Constructor.
      */
-    /* package */ CheckAction() {
+    public /* package */ CheckAction() {
         super("Check", "checks");
     }
     

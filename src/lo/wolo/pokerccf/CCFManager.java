@@ -35,6 +35,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import lo.wolo.pokerengine.actions.*;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -89,6 +91,7 @@ public class CCFManager extends StcServiceInet implements StcSessionUpdateListen
 	private ArrayList<ISimpleDiscoveryListener> listeners = new ArrayList<ISimpleDiscoveryListener>();
 	private ArrayList<NodeWrapper> discoveryNodeList = new ArrayList<NodeWrapper>();
 	
+	public ArrayList<Action> actionList;
 	public HashMap<UUID, RemoteUser> remoteSessionsMap = new HashMap<UUID, RemoteUser>();
 	public ArrayList<RemoteUser> remoteUsersList = new ArrayList<RemoteUser>();
 	public static int connection_Counter = 0;
@@ -447,7 +450,7 @@ public class CCFManager extends StcServiceInet implements StcSessionUpdateListen
 		public void chatReceived(String username, String line){
 			Log.d(TAG,"chatReceived: username: " + username + " line: " + line);
 			//PARSE
-					
+			parseCommand(username,line);
 			synchronized (listeners) {
 				for (ISimpleDiscoveryListener listen : listeners)
 					listen.updatedChatList(username + " : " + line);
@@ -459,6 +462,33 @@ public class CCFManager extends StcServiceInet implements StcSessionUpdateListen
 			int id = getRemoteSessionID(username);
 			Log.d(TAG,"Username: " + username + " maps to id: " + id);
 			
+			String [] tokens = line.split(" ");
+			if (tokens.length > 1) {
+				String command = tokens[0];
+				int ammount = Integer.parseInt(tokens[1]);
+				if (command.equals("bet")) {
+					actionList.set(id, new BetAction(ammount));
+				} else if(command.equals("raise")) {
+					actionList.set(id, new RaiseAction(ammount));
+				} else {
+					Log.d(TAG,"command size > 1, not equals raise nor bet :/");
+				}
+			} else if (tokens.length == 1) {
+				String command = tokens[0];
+				if (command.equals("fold")) {
+					actionList.set(id, new FoldAction());
+				} else if (command.equals("check")) {
+					actionList.set(id, new CheckAction());
+				} else if (command.equals("call")) {
+					actionList.set(id, new CallAction());
+				} else if (command.equals("allin")) {
+					actionList.set(id, new AllInAction());
+				} else {
+					Log.d(TAG,"command size == 1, not fold check call nor allin:/");
+				}
+			} else {
+				Log.d(TAG, "tokens.size() < 1 :(");
+			}		
 		}
 		
 		/** Returns the index of a given RemoteSession username in the LinkedList */

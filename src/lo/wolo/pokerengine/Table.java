@@ -37,6 +37,7 @@ package lo.wolo.pokerengine;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -399,31 +400,49 @@ public class Table {
                 } else {
                 	Log.d("Table","Actor: " + actor.getName() + " was NOTCONECTED");
                 }
-                try {
-					Thread.sleep(100000000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+//                try {
+//					Thread.sleep(100000000);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+                
                 
                 //Pool player's next action
-                while (((ClientCCF)actor.getClient()).getNextAction() == null) {
+                ClientCCF actorClient = ((ClientCCF)actor.getClient());
+                while (actorClient.getNextAction() == null) {
                 	try {
-						Thread.sleep(500);
+						Thread.sleep(300);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+                	actorClient.setNextAction(serviceManager.actionList.get(actorID));
                 }
                 //Action has been set
                 
                 action = actor.getClient().act(minBet, bet, allowedActions);
                 // Verify chosen action to guard against broken clients (accidental or on purpose).
-                if (!allowedActions.contains(action)) {
-                    if (!(action instanceof BetAction && allowedActions.contains(Action.BET)) && !(action instanceof RaiseAction && allowedActions.contains(Action.RAISE))) {
-                        throw new IllegalStateException(String.format("Player '%s' acted with illegal %s action", actor, action));
-                    }
+                Log.d(TAG,"Action is: " + action.getName());
+                Log.d(TAG,"allowedActions: ");
+                for (Action a : allowedActions) {
+                	Log.d(TAG,a.getName());
                 }
+                
+                Iterator<Action> it = allowedActions.iterator();
+                boolean found = false;
+                while (it.hasNext() && !found)
+                	if (it.next().equals(action))
+                		found = true;
+                if (!found)
+                	throw new IllegalStateException(String.format("Player '%s' acted with illegal %s action", actor, action));
+
+                // TODO check Illegal actions
+//                if (!allowedActions.contains(action)) {
+//                    if (!(action instanceof BetAction && allowedActions.contains(Action.BET)) && !(action instanceof RaiseAction && allowedActions.contains(Action.RAISE))) {
+//                        throw new IllegalStateException(String.format("Player '%s' acted with illegal %s action", actor, action));
+//                    }
+//                }
                 playersToAct--;
                 if (action == Action.CHECK) {
                     // Do nothing.
