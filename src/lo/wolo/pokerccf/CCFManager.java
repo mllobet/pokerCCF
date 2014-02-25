@@ -90,10 +90,12 @@ public class CCFManager extends StcServiceInet implements StcSessionUpdateListen
 	private ArrayList<NodeWrapper> discoveryNodeList = new ArrayList<NodeWrapper>();
 	
 	public HashMap<UUID, RemoteUser> remoteSessionsMap = new HashMap<UUID, RemoteUser>();
+	private ArrayList<RemoteUser> remoteUsersList = new ArrayList<RemoteUser>();
 	public static int connection_Counter = 0;
 	public static final int MAX_CONNECTION = 10;
+
 	
-	public enum SessionState{
+	 public enum SessionState{
 		CONNECTED,
 		NOTCONNECTED,
 		INVITE_SENT,
@@ -156,6 +158,10 @@ public class CCFManager extends StcServiceInet implements StcSessionUpdateListen
 						user.setsessionState(event.getStatus() == InviteResponseEvent.InviteStatus.sqtTimeout ? SessionState.TIME_OUT : SessionState.NOTCONNECTED);
 					}
 					remoteSessionsMap.put(user.getSession().getSessionUuid(), user);
+					//ArrayList stuff
+					Log.d("CCFManager","User: added");
+					remoteUsersList.add(user);
+					Log.d("CCFManager", "size: " + Integer.toString(remoteUsersList.size()));
 				} catch (StcException e) {
 					Log.e(LOGC, e.toString());
 				}
@@ -534,11 +540,11 @@ public class CCFManager extends StcServiceInet implements StcSessionUpdateListen
 		}
 		
 		//This method will disconnect all the existing connection before terminating the app service.
-		private void exitAllConnections(){
+		private void exitAllConnections() {
 			synchronized (remoteSessionsMap) {
 				Set<UUID> list = remoteSessionsMap.keySet();
 				Iterator<UUID> it = list.iterator();
-				while(it.hasNext()){
+				while(it.hasNext()) {
 					UUID uid = it.next();
 					RemoteUser user = remoteSessionsMap.get(uid);
 					if(user.getsessionState().equals(SessionState.CONNECTED)){
@@ -546,5 +552,9 @@ public class CCFManager extends StcServiceInet implements StcSessionUpdateListen
 					}
 				}
 			}
+		}
+		
+		public ArrayList<RemoteUser> getRemoteUsers() {
+			return remoteUsersList;
 		}
 }

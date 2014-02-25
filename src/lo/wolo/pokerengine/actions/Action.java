@@ -17,6 +17,8 @@
 
 package lo.wolo.pokerengine.actions;
 
+import lo.wolo.pokerccf.Constants;
+
 /**
  * Player action.
  * 
@@ -113,6 +115,29 @@ public abstract class Action {
      */
     public final int getAmount() {
         return amount;
+    }
+    
+    /** returns encoded value of the action */
+    public final int getEncode() {
+    	if (name.equals("All-in")) {
+    		return Constants.ALL_IN;
+    	} else if (name.equals("Bet")) {
+    		return Constants.BET;
+    	} else if (name.equals("Big blind")) {
+    		return Constants.BIG_BLIND;
+    	} else if (name.equals("Call")) {
+    		return Constants.CALL;
+    	} else if (name.equals("Check")) {
+    		return Constants.CHECK;
+    	} else if (name.equals("Continue")) {
+    		return Constants.CONTINUE;
+    	} else if (name.equals("Fold")) {
+    		return Constants.FOLD;
+    	} else if (name.equals("Raise")) {
+    		return Constants.RAISE;
+    	} else {
+    		return Constants.SMALL_BLIND;
+    	}
     }
     
     /** {@inheritDoc} */

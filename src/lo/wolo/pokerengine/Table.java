@@ -42,6 +42,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import android.util.Log;
+
+import lo.wolo.pokerccf.CCFManager;
+import lo.wolo.pokerccf.RemoteUser;
+import lo.wolo.pokerccf.ServerController;
 import lo.wolo.pokerengine.actions.Action;
 import lo.wolo.pokerengine.actions.BetAction;
 import lo.wolo.pokerengine.actions.RaiseAction;
@@ -107,13 +112,17 @@ public class Table {
     /** Number of raises in the current betting round. */
     private int raises;
     
+    private CCFManager serviceManager;
+    private ArrayList<RemoteUser> remoteUsers;
+    private ServerController serverController;
+    
     /**
      * Constructor.
      * 
      * @param bigBlind
      *            The size of the big blind.
      */
-    public Table(TableType type, int bigBlind) {
+    public Table(TableType type, int bigBlind, CCFManager serviceManager, ServerController serverController) {
         this.tableType = type;
         this.bigBlind = bigBlind;
         players = new ArrayList<Player>();
@@ -121,6 +130,11 @@ public class Table {
         deck = new Deck();
         board = new ArrayList<Card>();
         pots = new ArrayList<Pot>();
+        
+        //initialize remote users
+        this.serviceManager = serviceManager;
+        this.remoteUsers = serviceManager.getRemoteUsers();
+        this.serverController = serverController;
     }
     
     /**
@@ -365,6 +379,22 @@ public class Table {
             } else {
                 // Otherwise allow client to act.
                 Set<Action> allowedActions = getAllowedActions(actor);
+                //Send Allowed Actions to remoteUsers
+                int actorID = Integer.parseInt(actor.getName());
+                RemoteUser actorRemoteUser = remoteUsers.get(actorID);
+                
+                if (actorRemoteUser.getsessionState() == CCFManager.SessionState.CONNECTED) {
+                	serverController.sendActionsAllowed(actorID,allowedActions);
+                } else {
+                	Log.d("Table","Actor: " + actor.getName() + " was NOTCONECTED");
+                }
+                try {
+					Thread.sleep(100000000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+                
                 action = actor.getClient().act(minBet, bet, allowedActions);
                 // Verify chosen action to guard against broken clients (accidental or on purpose).
                 if (!allowedActions.contains(action)) {

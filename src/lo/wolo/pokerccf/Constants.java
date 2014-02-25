@@ -33,6 +33,9 @@ public class Constants {
 	public static final int FOLD = 0x02;
 	public static final int CHECK = 0x04;
 	public static final int CALL = 0x08;
-	public static final int ALLIN = 0x10;
+	public static final int ALL_IN = 0x10;
 	public static final int BET = 0x20;
+	public static final int BIG_BLIND = 0x40;
+	public static final int CONTINUE = 0x80;
+	public static final int SMALL_BLIND = 0x100;
 }

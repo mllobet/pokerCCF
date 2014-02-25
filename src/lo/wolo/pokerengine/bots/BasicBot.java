@@ -50,8 +50,7 @@ import lo.wolo.pokerengine.util.PokerUtils;
  * @author Oscar Stigter
  */
 public class BasicBot extends Bot {
-	
-
+    
     /** Tightness (0 = loose, 100 = tight). */
     private final int tightness;
     

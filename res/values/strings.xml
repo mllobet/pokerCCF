@@ -13,6 +13,7 @@
     <string name="session_empty_title">No Users available</string>
     <string name="title_activity_discovery_node">DiscoveryNodeActivity</string>
     <string name="discoveryButton">Discovery Nodes</string>
+    <string name="startButton">Start</string>
     <string name="chat_box_hint">Enter text to chat.</string>
     <string name="send">Send</string>
     <string name="clientButton">Client</string>
