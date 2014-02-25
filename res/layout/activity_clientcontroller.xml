@@ -21,41 +21,78 @@
 	    android:orientation="vertical"
 	    android:layout_alignParentBottom="true"
 	    >
-	    <Button 
-	        android:id="@+id/raiseButton"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:text="@string/raise"
-	        android:enabled="false"/>
-	    <Button 
-	        android:id="@+id/foldButton"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:text="@string/fold"
-	        android:enabled="false"/>
-	    <Button 
-	        android:id="@+id/checkButton"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:text="@string/check"
-	        android:enabled="false"/>
-	    <Button 
-	        android:id="@+id/callButton"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:text="@string/call"
-	        android:enabled="false"/>
-	    <Button 
-	        android:id="@+id/allinButton"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:text="@string/allin"
-	        android:enabled="false"/>
-	    <Button 
-	        android:id="@+id/betButton"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:text="@string/bet"
-	        android:enabled="false"/>
+
 	</LinearLayout>
+
+	<TableLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/discoveryButton"
+	    android:layout_alignParentBottom="true"
+	    android:layout_marginBottom="48dp" >
+
+	    <TableRow
+	        android:id="@+id/tableRow1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+
+	        <Button
+	            android:id="@+id/checkButton"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:enabled="false"
+	            android:text="@string/check" />
+
+	        <Button
+	            android:id="@+id/callButton"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:enabled="false"
+	            android:text="@string/call" />
+
+	    </TableRow>
+
+	    <TableRow
+	        android:id="@+id/tableRow2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+
+	        <Button
+	            android:id="@+id/betButton"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:enabled="false"
+	            android:text="@string/bet" />
+
+	        <Button
+	            android:id="@+id/allinButton"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:enabled="false"
+	            android:text="@string/allin" />
+
+	    </TableRow>
+
+	    <TableRow
+	        android:id="@+id/tableRow3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+
+	        <Button
+	            android:id="@+id/raiseButton"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="0.89"
+	            android:enabled="false"
+	            android:text="@string/raise" />
+
+	        <Button
+	            android:id="@+id/foldButton"
+	            android:layout_width="147dp"
+	            android:layout_height="wrap_content"
+	            android:enabled="false"
+	            android:text="@string/fold" />
+	    </TableRow>
+	</TableLayout>
+
 </RelativeLayout>
