@@ -105,7 +105,7 @@
 
     <string name="profile_insert_username">Enter Username&#8230;</string>
     <string name="profile_insert_status">Enter Status Message&#8230;</string>
-    <string name="app_name">Poker CCF</string>
+    <string name="app_name">Poker Table</string>
     <string name="app_description">Simple chat app description.</string>
     <string name="notification_text">has invited you to simple chat.</string>
     <string name="timeout_toast_text">Invitation to simplechat has timed out.</string>
