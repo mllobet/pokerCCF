@@ -38,16 +38,15 @@
 
 	        <Button
 	            android:id="@+id/checkButton"
-	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-				android:layout_weight="0.89"	            
+				android:layout_weight="1"	            
 	            android:enabled="false"
 	            android:text="@string/check" />
 
 	        <Button
 	            android:id="@+id/callButton"
-	            android:layout_width="147dp"
 	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
 	            android:enabled="false"
 	            android:text="@string/call" />
 
@@ -60,16 +59,15 @@
 
 	        <Button
 	            android:id="@+id/betButton"
-	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:layout_weight="0.89"	            
+	            android:layout_weight="1"	            
 	            android:enabled="false"
 	            android:text="@string/bet" />
 
 	        <Button
 	            android:id="@+id/allinButton"
-	            android:layout_width="147dp"
 	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
 	            android:enabled="false"
 	            android:text="@string/allin" />
 
@@ -82,16 +80,15 @@
 
 	        <Button
 	            android:id="@+id/raiseButton"
-	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:layout_weight="0.89"
+	            android:layout_weight="1"
 	            android:enabled="false"
 	            android:text="@string/raise" />
 
 	        <Button
 	            android:id="@+id/foldButton"
-	            android:layout_width="147dp"
 	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
 	            android:enabled="false"
 	            android:text="@string/fold" />
 	    </TableRow>
