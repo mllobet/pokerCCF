@@ -124,8 +124,8 @@
 				android:layout_height="wrap_content"
 				android:textColor="#ffffff"
 				android:textSize="32sp"
-				android:text="big pot: $0"
-				android:paddingRight="10dp" >
+				android:text="Pot: $0"
+				android:padding="8dp" >
 			</TextView>
 
 			<TextView
@@ -134,8 +134,8 @@
 				android:layout_height="wrap_content"
 				android:textColor="#ffffff"
 				android:textSize="32sp"
-				android:text="min bet: $0"
-				android:paddingLeft="10dp" >
+				android:text="Min: $0"
+				android:padding="8dp" >
 			</TextView>
 		</LinearLayout>
 

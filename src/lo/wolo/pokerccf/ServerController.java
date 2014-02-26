@@ -525,7 +525,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 
 			@Override
 			public void run() {
-				curBetView.setText("Min Bet: $" + betHack);
+				curBetView.setText("Bet: $" + betHack);
 			}
 		});
 
@@ -539,7 +539,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 
 			@Override
 			public void run() {
-				potView.setText("Big Pot: $" + Integer.toString(potHack));
+				potView.setText("Pot: $" + Integer.toString(potHack));
 			}
 		});
 
