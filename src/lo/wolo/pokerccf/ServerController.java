@@ -35,7 +35,6 @@ import java.util.Set;
 
 import lo.wolo.pokerengine.*;
 import lo.wolo.pokerengine.actions.*;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -50,8 +49,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -71,6 +72,38 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 	private Button discoveryNodesButton = null;
 	private Button startButton = null;
 	private Dialog platformStartAlert;
+	
+	private Button changeLayoutButton = null;
+	
+	ImageView card1 = null;
+	ImageView card2 = null;
+	ImageView card3 = null;
+	ImageView card4 = null;
+	ImageView card5 = null;
+	
+	TextView player1 = null;
+	TextView player2 = null;
+	TextView player3 = null;
+	TextView player4 = null;
+	TextView player5 = null;
+	TextView player6 = null;
+	
+	TextView potView = null;
+	TextView curBetView = null;
+	
+	static final int cardDrawables[] = {
+		R.drawable.card_00, R.drawable.card_01, R.drawable.card_02, R.drawable.card_03, R.drawable.card_04,
+		R.drawable.card_05, R.drawable.card_06, R.drawable.card_07, R.drawable.card_08, R.drawable.card_09,
+		R.drawable.card_10, R.drawable.card_11, R.drawable.card_12, R.drawable.card_13, R.drawable.card_14,
+		R.drawable.card_15, R.drawable.card_16, R.drawable.card_17, R.drawable.card_18, R.drawable.card_19,
+		R.drawable.card_20, R.drawable.card_21, R.drawable.card_22, R.drawable.card_23, R.drawable.card_24,
+		R.drawable.card_25, R.drawable.card_26, R.drawable.card_27, R.drawable.card_28, R.drawable.card_29,
+		R.drawable.card_30, R.drawable.card_31, R.drawable.card_32, R.drawable.card_33, R.drawable.card_34,
+		R.drawable.card_35, R.drawable.card_36, R.drawable.card_37, R.drawable.card_38, R.drawable.card_39,
+		R.drawable.card_40, R.drawable.card_41, R.drawable.card_42, R.drawable.card_43, R.drawable.card_44,
+		R.drawable.card_45, R.drawable.card_46, R.drawable.card_47, R.drawable.card_48, R.drawable.card_49,
+		R.drawable.card_50, R.drawable.card_51
+	};
 
 	private ServerController myself;
 
@@ -80,6 +113,8 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 		super.onCreate(savedInstanceState);
 
 		myself = this;
+		
+	    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		setContentView(R.layout.activity_ccfuicontroller);
 
@@ -96,6 +131,9 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 		discoveryNodesButton.setOnClickListener(this);
 		startButton = (Button)findViewById(R.id.startButton);
 		startButton.setOnClickListener(this);
+		
+		changeLayoutButton = (Button)findViewById(R.id.changeLayoutButton);
+		changeLayoutButton.setOnClickListener(this);
 
 		doStartService();
 
@@ -125,7 +163,55 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 		doStopService();
 		super.onBackPressed();
 	}
+	
+	
+	private void setTableLayout() {
+		setContentView(R.layout.table_layout);
+		
+		ImageView card1 = (ImageView)findViewById(R.id.card1);
+		ImageView card2 = (ImageView)findViewById(R.id.card2);
+		ImageView card3 = (ImageView)findViewById(R.id.card3);
+		ImageView card4 = (ImageView)findViewById(R.id.card4);
+		ImageView card5 = (ImageView)findViewById(R.id.card5);
+		
+		TextView player1 = (TextView)findViewById(R.id.player1);
+		TextView player2 = (TextView)findViewById(R.id.player2);
+		TextView player3 = (TextView)findViewById(R.id.player3);
+		TextView player4 = (TextView)findViewById(R.id.player4);
+		TextView player5 = (TextView)findViewById(R.id.player5);
+		TextView player6 = (TextView)findViewById(R.id.player6);
+		
+		TextView potView = (TextView)findViewById(R.id.potView);
+		TextView curBetView = (TextView)findViewById(R.id.betView);
+		
+		startButton = (Button)findViewById(R.id.startButton);
+		startButton.setOnClickListener(this);
+		
+	}
+	
 
+	public void setCard(int cardHash, int cardNum) {
+		switch(cardNum) {
+		
+		case 1:
+			card1.setImageResource(cardDrawables[cardHash]);
+			break;
+		case 2:
+			card2.setImageResource(cardDrawables[cardHash]);
+			break;
+		case 3:
+			card3.setImageResource(cardDrawables[cardHash]);
+			break;
+		case 4:
+			card4.setImageResource(cardDrawables[cardHash]);
+			break;
+		case 5:
+			card5.setImageResource(cardDrawables[cardHash]);
+			break;		
+		}
+	}
+	
+	
 	//This is a callback on button click.
 	@Override
 	public void onClick(View view) {
@@ -136,6 +222,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 			startActivity(intent);
 			break;
 		case R.id.startButton :
+			Log.i("lolbug", "Start BUtton pressed");
 			//HERE IS WHERE THE HACK HAPPENS
 			Thread t = new Thread(new Runnable() {
 
@@ -186,6 +273,10 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 			});
 			t.start();
 			break;
+		case R.id.changeLayoutButton :
+			setTableLayout();
+			break;
+			
 		}
 	}
 

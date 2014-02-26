@@ -15,12 +15,23 @@
         android:layout_marginTop="5dp"
         android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/discoveryButton"
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:text="@string/discoveryButton" />
+            android:orientation="horizontal" >
+            
+	        <Button
+	            android:id="@+id/discoveryButton"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/discoveryButton" />
+	        
+	         <Button 
+	        android:id="@+id/changeLayoutButton"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Layout"></Button>
+         </LinearLayout>
 
         <Button
             android:id="@+id/startButton"

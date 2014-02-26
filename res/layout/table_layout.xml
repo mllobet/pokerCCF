@@ -21,14 +21,66 @@
             android:paddingRight="20dp" >
             
         </TextView>
+        <!--  Hardcoded users -->
         <TextView
+            android:id="@+id/player1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="20dp"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:text="Albert"
+            android:visibility="invisible">
+        </TextView>
+        <TextView 
+            android:id="@+id/player2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="20dp"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:text="Dani"
+            android:visibility="invisible">
+       	</TextView>
+		<TextView 
+			android:id="@+id/player3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="20dp"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:text="David"
+            android:visibility="invisible">
+       	</TextView>
+		<TextView 
+		    android:id="@+id/player4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="20dp"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:text="Miquel"
+            android:visibility="invisible">
+       	</TextView>
+		<TextView 
+		    android:id="@+id/player5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="20dp"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:text="Shamit"
+            android:visibility="invisible">
+       	</TextView>
+		<TextView 
+		    android:id="@+id/player6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
-            android:text="Albert">
-            
-        </TextView>
+            android:text="Zuckerberg"
+            android:visibility="invisible">
+       	</TextView>
         
     </LinearLayout>
     
@@ -120,5 +172,18 @@
         </TextView>
     </LinearLayout>
         
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+	    <Button 
+	        android:id="@+id/changeLayoutButton"
+	        android:layout_width="200dp"
+	        android:layout_height="wrap_content"
+	        android:text="ChangeLayout"></Button>
+	     <Button 
+	        android:id="@+id/startButton"
+	        android:layout_width="200dp"
+	        android:layout_height="wrap_content"
+	        android:text="Start"></Button>
+	</LinearLayout>
 </LinearLayout>
