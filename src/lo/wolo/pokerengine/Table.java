@@ -642,9 +642,13 @@ public class Table {
             pot.addContributer(actor);
             pots.add(pot);
         }
+        int tamount = 0;
+        for (int i = 0; i < pots.size(); i++) {
+        	tamount += pots.get(i).getValue();
+        }
         
         if (pots.size() >= 1) 
-        	serverController.setPotText(pots.get(0).getValue());
+        	serverController.setPotText(tamount);
     }
     
     /**
