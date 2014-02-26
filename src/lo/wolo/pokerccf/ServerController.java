@@ -52,6 +52,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -73,6 +74,23 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 	private Dialog platformStartAlert;
 	
 	private Button changeLayoutButton = null;
+	
+	ImageView card1 = null;
+	ImageView card2 = null;
+	ImageView card3 = null;
+	ImageView card4 = null;
+	ImageView card5 = null;
+	
+	TextView player1 = null;
+	TextView player2 = null;
+	TextView player3 = null;
+	TextView player4 = null;
+	TextView player5 = null;
+	TextView player6 = null;
+	
+	TextView potView = null;
+	TextView curBetView = null;
+	
 
 	private ServerController myself;
 
@@ -132,6 +150,32 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 		doStopService();
 		super.onBackPressed();
 	}
+	
+	
+	private void setTableLayout() {
+		setContentView(R.layout.table_layout);
+		
+		ImageView card1 = (ImageView)findViewById(R.id.card1);
+		ImageView card2 = (ImageView)findViewById(R.id.card2);
+		ImageView card3 = (ImageView)findViewById(R.id.card3);
+		ImageView card4 = (ImageView)findViewById(R.id.card4);
+		ImageView card5 = (ImageView)findViewById(R.id.card5);
+		
+		TextView player1 = (TextView)findViewById(R.id.player1);
+		TextView player2 = (TextView)findViewById(R.id.player2);
+		TextView player3 = (TextView)findViewById(R.id.player3);
+		TextView player4 = (TextView)findViewById(R.id.player4);
+		TextView player5 = (TextView)findViewById(R.id.player5);
+		TextView player6 = (TextView)findViewById(R.id.player6);
+		
+		TextView potView = (TextView)findViewById(R.id.potView);
+		TextView curBetView = (TextView)findViewById(R.id.betView);
+		
+		startButton = (Button)findViewById(R.id.startButton);
+		startButton.setOnClickListener(this);
+		
+	}
+	
 
 	//This is a callback on button click.
 	@Override
@@ -143,6 +187,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 			startActivity(intent);
 			break;
 		case R.id.startButton :
+			Log.i("lolbug", "Start BUtton pressed");
 			//HERE IS WHERE THE HACK HAPPENS
 			Thread t = new Thread(new Runnable() {
 
@@ -194,9 +239,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 			t.start();
 			break;
 		case R.id.changeLayoutButton :
-			Log.i("lolbug", "Changing layout...");
-			setContentView(R.layout.table_layout);
-			Log.i("lolbug", "Layoud changed");
+			setTableLayout();
 			break;
 			
 		}
