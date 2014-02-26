@@ -75,21 +75,29 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 	
 	private Button changeLayoutButton = null;
 	
-	ImageView card1 = null;
-	ImageView card2 = null;
-	ImageView card3 = null;
-	ImageView card4 = null;
-	ImageView card5 = null;
+	public ImageView card1 = null;
+	public ImageView card2 = null;
+	public ImageView card3 = null;
+	public ImageView card4 = null;
+	public ImageView card5 = null;
 	
-	TextView player1 = null;
-	TextView player2 = null;
-	TextView player3 = null;
-	TextView player4 = null;
-	TextView player5 = null;
-	TextView player6 = null;
+	public TextView player1 = null;
+	public TextView player2 = null;
+	public TextView player3 = null;
+	public TextView player4 = null;
+	public TextView player5 = null;
+	public TextView player6 = null;
 	
-	TextView potView = null;
-	TextView curBetView = null;
+	public TextView potView = null;
+	public TextView curBetView = null;
+	
+	
+	public int card1Hash = -1;
+	public int card2Hash = -1;
+	public int card3Hash = -1;
+	public int card4Hash = -1;
+	public int card5Hash = -1;
+	
 	
 	static final int cardDrawables[] = {
 		R.drawable.card_00, R.drawable.card_01, R.drawable.card_02, R.drawable.card_03, R.drawable.card_04,
@@ -168,21 +176,21 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 	private void setTableLayout() {
 		setContentView(R.layout.table_layout);
 		
-		ImageView card1 = (ImageView)findViewById(R.id.card1);
-		ImageView card2 = (ImageView)findViewById(R.id.card2);
-		ImageView card3 = (ImageView)findViewById(R.id.card3);
-		ImageView card4 = (ImageView)findViewById(R.id.card4);
-		ImageView card5 = (ImageView)findViewById(R.id.card5);
+		card1 = (ImageView)findViewById(R.id.card1);
+		card2 = (ImageView)findViewById(R.id.card2);
+		card3 = (ImageView)findViewById(R.id.card3);
+		card4 = (ImageView)findViewById(R.id.card4);
+		card5 = (ImageView)findViewById(R.id.card5);
 		
-		TextView player1 = (TextView)findViewById(R.id.player1);
-		TextView player2 = (TextView)findViewById(R.id.player2);
-		TextView player3 = (TextView)findViewById(R.id.player3);
-		TextView player4 = (TextView)findViewById(R.id.player4);
-		TextView player5 = (TextView)findViewById(R.id.player5);
-		TextView player6 = (TextView)findViewById(R.id.player6);
+		player1 = (TextView)findViewById(R.id.player1);
+		player2 = (TextView)findViewById(R.id.player2);
+		player3 = (TextView)findViewById(R.id.player3);
+		player4 = (TextView)findViewById(R.id.player4);
+		player5 = (TextView)findViewById(R.id.player5);
+		player6 = (TextView)findViewById(R.id.player6);
 		
-		TextView potView = (TextView)findViewById(R.id.potView);
-		TextView curBetView = (TextView)findViewById(R.id.betView);
+		potView = (TextView)findViewById(R.id.potView);
+		curBetView = (TextView)findViewById(R.id.betView);
 		
 		startButton = (Button)findViewById(R.id.startButton);
 		startButton.setOnClickListener(this);
@@ -191,24 +199,28 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 	
 
 	public void setCard(int cardHash, int cardNum) {
-		switch(cardNum) {
-		
-		case 1:
-			card1.setImageResource(cardDrawables[cardHash]);
-			break;
-		case 2:
-			card2.setImageResource(cardDrawables[cardHash]);
-			break;
-		case 3:
-			card3.setImageResource(cardDrawables[cardHash]);
-			break;
-		case 4:
-			card4.setImageResource(cardDrawables[cardHash]);
-			break;
-		case 5:
-			card5.setImageResource(cardDrawables[cardHash]);
-			break;		
-		}
+		if (cardNum == 1) card1Hash = cardHash;
+		else if (cardNum == 2) card2Hash = cardHash;
+		else if (cardNum == 3) card3Hash = cardHash;
+		else if (cardNum == 4) card4Hash = cardHash;
+		else if (cardNum == 5) card5Hash = cardHash;
+		Log.i("lolbug", "CardNum: " + cardNum + "  cardHash: " + cardHash);
+		myHandler.post(new Runnable() {
+			public void run () {
+				Log.i("lolbug", "Setting cards images...");
+				if (card1Hash < 0) card1.setImageResource(R.drawable.card_back);
+				else card1.setImageResource(cardDrawables[card1Hash]);
+				if (card2Hash < 0) card2.setImageResource(R.drawable.card_back);
+				else card2.setImageResource(cardDrawables[card2Hash]);
+				if (card3Hash < 0) card3.setImageResource(R.drawable.card_back);
+				else card3.setImageResource(cardDrawables[card3Hash]);
+				if (card4Hash < 0) card4.setImageResource(R.drawable.card_back);
+				else card4.setImageResource(cardDrawables[card4Hash]);
+				if (card5Hash < 0) card5.setImageResource(R.drawable.card_back);
+				else card5.setImageResource(cardDrawables[card5Hash]);
+			}
+		});
+	
 	}
 	
 	
