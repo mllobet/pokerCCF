@@ -223,7 +223,13 @@ public class Table {
         	Log.d(TAG,"ActivePlayers: " + Integer.toString(activePlayers.size()));
             bet = 0;
             dealCommunityCards("Flop", 3);
+            
             for (Card cd :board) Log.i("lolbug", Integer.toString(cd.hashCode()));
+            
+            serverController.setCard(board.get(0).hashCode(), 1);
+            serverController.setCard(board.get(1).hashCode(), 2);
+            serverController.setCard(board.get(2).hashCode(), 3);
+            
             minBet = bigBlind;
             doBettingRound();
 
@@ -231,6 +237,10 @@ public class Table {
             if (activePlayers.size() > 1) {
                 bet = 0;
                 dealCommunityCards("Turn", 1);
+                
+                Log.i("lolbug", Integer.toString(board.get(3).hashCode()));
+                serverController.setCard(board.get(3).hashCode(), 4);
+                
                 if (tableType == TableType.FIXED_LIMIT) {
                     minBet = 2 * bigBlind;
                 } else {
@@ -242,6 +252,10 @@ public class Table {
                 if (activePlayers.size() > 1) {
                     bet = 0;
                     dealCommunityCards("River", 1);
+                    
+                    Log.i("lolbug", Integer.toString(board.get(4).hashCode()));
+                    serverController.setCard(board.get(4).hashCode(), 5);
+                    
                     if (tableType == TableType.FIXED_LIMIT) {
                         minBet = 2 * bigBlind;
                     } else {
