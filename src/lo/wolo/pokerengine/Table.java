@@ -339,7 +339,9 @@ public class Table {
     private void dealHoleCards() {
         for (Player player : activePlayers) {
             player.setCards(deck.deal(2));
-            serverController.sendCards(Integer.parseInt(player.getName()), player.getCards());
+            int id = Integer.parseInt(player.getName());
+            serverController.sendCards(id, player.getCards());
+            serverController.sendMessage(id, "money " + player.getCash());
         }
         
         System.out.println();
@@ -410,12 +412,6 @@ public class Table {
                 } else {
                 	Log.d("Table","Actor: " + actor.getName() + " was NOTCONECTED");
                 }
-//                try {
-//					Thread.sleep(100000000);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
                 
                 //Sends money message
                 serverController.sendMessage(actorID, "money " + actor.getCash());
