@@ -370,6 +370,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 	
 	/** Send a message to a given player id */
 	public void sendMessage(int id, String message) {
+		Log.d("sendMessage","id: " + id + " " + message);
 		WriteEngine wEngine = serviceManager.getRemoteUsers().get(id).getWriter();
 		wEngine.writeString(message+";");
 	}
