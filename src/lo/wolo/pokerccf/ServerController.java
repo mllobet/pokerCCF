@@ -133,28 +133,32 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-		setContentView(R.layout.activity_ccfuicontroller);
+		setContentView(R.layout.table_layout);
 		final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
 		this.mWakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "Poker Table");
 		this.mWakeLock.acquire();
 
 
-		sessionList = (ListView)findViewById(R.id.sessionList);
-		sessionEmptyText = (TextView)findViewById(R.id.sessionListEmptyText);
-		sessionList.setEmptyView(sessionEmptyText);
+		setContentView(R.layout.table_layout);
 
-		chatList = (ListView)findViewById(R.id.chatList);
-		chatAdapter = new ChatAdapter(this);
-		chatList.setAdapter(chatAdapter);
+		card1 = (ImageView)findViewById(R.id.card1);
+		card2 = (ImageView)findViewById(R.id.card2);
+		card3 = (ImageView)findViewById(R.id.card3);
+		card4 = (ImageView)findViewById(R.id.card4);
+		card5 = (ImageView)findViewById(R.id.card5);
 
-		// Buttons!
-		discoveryNodesButton = (Button)findViewById(R.id.discoveryButton);
-		discoveryNodesButton.setOnClickListener(this);
+		player1 = (TextView)findViewById(R.id.player1);
+		player2 = (TextView)findViewById(R.id.player2);
+		player3 = (TextView)findViewById(R.id.player3);
+		player4 = (TextView)findViewById(R.id.player4);
+		player5 = (TextView)findViewById(R.id.player5);
+		player6 = (TextView)findViewById(R.id.player6);
+
+		potView = (TextView)findViewById(R.id.potView);
+		curBetView = (TextView)findViewById(R.id.betView);
+
 		startButton = (Button)findViewById(R.id.startButton);
 		startButton.setOnClickListener(this);
-
-		changeLayoutButton = (Button)findViewById(R.id.changeLayoutButton);
-		changeLayoutButton.setOnClickListener(this);
 
 		doStartService();
 
@@ -366,7 +370,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 						platformStartAlert.dismiss();
 					}
 
-					sessionList.setAdapter(sessionAdapter);
+					//sessionList.setAdapter(sessionAdapter);
 				}
 			});
 		}
@@ -404,8 +408,8 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 
 			@Override
 			public void run() {
-				chatAdapter.addChatLine(line);
-				chatAdapter.notifyDataSetChanged();
+				//chatAdapter.addChatLine(line);
+				//chatAdapter.notifyDataSetChanged();
 			}
 		});
 
