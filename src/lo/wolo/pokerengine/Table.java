@@ -197,13 +197,19 @@ public class Table {
     private void playHand() {
         resetHand();
         
+        int id = Integer.parseInt(actor.getName());
+        serverController.sendMessage(id, "role dealer");
         // Small blind.
         if (activePlayers.size() > 2) {
             rotateActor();
         }
+        id = Integer.parseInt(actor.getName());
+        serverController.sendMessage(id, "role smallBlind");
         postSmallBlind();
         
         // Big blind.
+        id = Integer.parseInt(actor.getName());
+        serverController.sendMessage(id, "role bigBlind");
         rotateActor();
         postBigBlind();
         
@@ -398,7 +404,7 @@ public class Table {
                 RemoteUser actorRemoteUser = remoteUsers.get(actorID);
                 
                 if (actorRemoteUser.getsessionState() == CCFManager.SessionState.CONNECTED) {
-                	Log.d(TAG,"isConected");
+                	Log.d(TAG,actorRemoteUser.toString() + " isConected");
                 	serverController.sendActionsAllowed(actorID,allowedActions);
                 } else {
                 	Log.d("Table","Actor: " + actor.getName() + " was NOTCONECTED");
@@ -410,6 +416,8 @@ public class Table {
 //					e.printStackTrace();
 //				}
                 
+                //Sends money message
+                serverController.sendMessage(actorID, "money " + actor.getCash());
                 
                 //Pool player's next action
                 ClientCCF actorClient = ((ClientCCF)actor.getClient());

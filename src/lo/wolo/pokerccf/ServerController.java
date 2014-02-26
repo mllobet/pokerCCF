@@ -180,7 +180,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 					table = new Table(TABLE_TYPE, BIG_BLIND, serviceManager, myself);
 					for (Player player : players)
 						table.addPlayer(player);
-
+					myself.serviceManager.postToConnections("minbet " + BIG_BLIND/2);
 					table.run();	    	
 				}
 			});
