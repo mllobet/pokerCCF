@@ -45,6 +45,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import lo.wolo.pokerccf.CCFManager.SessionState;
+import com.intel.stc.utility.StcSession;
 
 /***
  * Manages the data from the service to show the session list.

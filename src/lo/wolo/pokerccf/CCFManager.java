@@ -43,6 +43,24 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 
+import com.intel.stc.events.InviteRequestEvent;
+import com.intel.stc.events.InviteResponseEvent;
+import com.intel.stc.events.StcException;
+import com.intel.stc.events.StcSessionUpdateEvent;
+import com.intel.stc.interfaces.IStcActivity;
+import com.intel.stc.interfaces.StcConnectionListener;
+import com.intel.stc.interfaces.StcLocalSessionUpdateListener;
+import com.intel.stc.interfaces.StcSessionUpdateListener;
+import com.intel.stc.ipc.STCLoggingLevel;
+import com.intel.stc.ipc.STCLoggingMode;
+import com.intel.stc.ipc.STCLoggingModule;
+import com.intel.stc.lib.StcLib;
+import com.intel.stc.slib.StcServiceInet;
+import com.intel.stc.utility.StcApplicationId;
+import com.intel.stc.utility.StcDiscoveryNode;
+import com.intel.stc.utility.StcSession;
+import com.intel.stc.utility.StcSocket;
+
 /**
  * This part of the application has the majority of the c3 integration. All c3
  * applications written to the android c3 SDK require a subclass of

@@ -28,6 +28,8 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package lo.wolo.pokerccf;
 
+import com.intel.stc.utility.StcDiscoveryNode;
+
 /**
  * Wrapper class to bind the instance of StcDiscoveryNode.
  * This will contain Node information along with subscription status.

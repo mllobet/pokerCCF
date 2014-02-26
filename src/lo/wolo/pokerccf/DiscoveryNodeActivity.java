@@ -42,6 +42,13 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.intel.startup.CloudAuthorizationActivity;
+import com.intel.stc.events.StcException;
+import com.intel.stc.lib.StcLib;
+import com.intel.stc.utility.StcConstants;
+import com.intel.stc.utility.StcDiscoveryNode;
+import com.intel.stc.utility.StcSession;
+
 public class DiscoveryNodeActivity extends AbstractServiceUsingActivity implements OnClickListener{
 
 	private EditText enterNodeName = null;
@@ -151,20 +158,17 @@ public class DiscoveryNodeActivity extends AbstractServiceUsingActivity implemen
 		private final TextWatcher  mTextEditorWatcher = new TextWatcher() 
 		{
 	        
-	        @Override
-			public void beforeTextChanged(CharSequence s, int start, int count, int after)
+	        public void beforeTextChanged(CharSequence s, int start, int count, int after)
 	        {
 
 	        }
 
-	        @Override
-			public void onTextChanged(CharSequence s, int start, int before, int count)
+	        public void onTextChanged(CharSequence s, int start, int before, int count)
 	        {
 	           
 	        }
 
-	        @Override
-			public void afterTextChanged(Editable s)
+	        public void afterTextChanged(Editable s)
 	        {
 	        	if(s.toString().matches(""))
 	        	{
