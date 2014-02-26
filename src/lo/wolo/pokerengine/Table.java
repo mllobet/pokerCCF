@@ -274,7 +274,7 @@ public class Table {
         // Rotate the dealer button.
         dealerPosition = (dealerPosition + 1) % activePlayers.size();
         dealer = activePlayers.get(dealerPosition);
-
+                
         // Shuffle the deck.
         deck.shuffle();
 

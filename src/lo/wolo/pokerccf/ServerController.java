@@ -338,10 +338,10 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 				>= Configuration.SCREENLAYOUT_SIZE_LARGE; 
 	}
 
+	/** Sends all actions allowed to a given player id */
 	public void sendActionsAllowed(int id, Set<Action> allowedActions) {
 		Log.d(TAG,"sendingActionsAllowed");
-		WriteEngine wEngine = serviceManager.getRemoteUsers().get(id).getWriter();
-		wEngine.writeString("cmds " + encodeActions(allowedActions));
+		sendMessage(id, "cmds " + encodeActions(allowedActions));
 		try {
 			Thread.sleep(300);
 		} catch (InterruptedException e) {
@@ -350,6 +350,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 		}
 	}
 
+	/** it encodes a set of actions to be sent */
 	private String encodeActions(Set<Action> s) {
 		int out = 0;
 		for (Action a : s) {
@@ -358,6 +359,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 		return Integer.toString(out);
 	}
 
+	/** sends cards to a given player id */
 	public void sendCards(int id, Card[] cards) {
 		String out = "";
 		boolean first = true;
@@ -369,13 +371,18 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 			}
 		}
 		Log.d(TAG,"sendingCards: " + out);
-		WriteEngine wEngine = serviceManager.getRemoteUsers().get(id).getWriter();
-		wEngine.writeString("cards " + out);
+		sendMessage(id, "cards " + out);
 		try {
 			Thread.sleep(300);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	/** Send a message to a given player id */
+	public void sendMessage(int id, String message) {
+		WriteEngine wEngine = serviceManager.getRemoteUsers().get(id).getWriter();
+		wEngine.writeString(message);
 	}
 }
