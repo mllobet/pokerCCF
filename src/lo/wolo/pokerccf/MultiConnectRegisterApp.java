@@ -34,10 +34,6 @@ import java.util.UUID;
 
 import android.content.Context;
 
-import com.intel.stc.lib.AppRegisterService;
-import com.intel.stc.lib.GadgetRegistration;
-import com.intel.stc.utility.StcApplicationId;
-
 /***
  * C3 requires a subclass of RegisterApp to be in every application.
  * SimpleChatRegisterApp is that subclass for SimpleChat. All of this class is

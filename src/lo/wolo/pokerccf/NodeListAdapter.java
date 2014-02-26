@@ -141,6 +141,7 @@ public class NodeListAdapter extends BaseAdapter {
 		// setup a click handler to pass invites up to the service.
 		final NodeWrapper node = curNode;
 		convertView.setOnClickListener(new OnClickListener() {
+			@Override
 			public void onClick(View v) {
 				displayDialog(node);
 			}

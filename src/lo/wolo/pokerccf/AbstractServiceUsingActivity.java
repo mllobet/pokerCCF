@@ -43,14 +43,6 @@ import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.intel.stc.events.DiscoveryNodeUpdateEvent;
-import com.intel.stc.events.StcException;
-import com.intel.stc.interfaces.StcDiscoveryNodeUpdateEventListener;
-import com.intel.stc.lib.StcLib;
-import com.intel.stc.lib.StcLib.NodeFlags;
-import com.intel.stc.slib.IStcServInetClient;
-import com.intel.stc.utility.StcDiscoveryNode;
-
 /***
  * Because all of our Activities need to bind to the service, this abstract class 
  * encapsulates the grunt work of binding to the CCFManager. Subclasses
@@ -190,6 +182,7 @@ public abstract class AbstractServiceUsingActivity extends Activity implements I
 	public class CCFManagerServiceConnection implements ServiceConnection
 	{
 		
+		@Override
 		public void onServiceConnected(ComponentName className, IBinder binder) 
 		{
 			synchronized(this) {
@@ -202,6 +195,7 @@ public abstract class AbstractServiceUsingActivity extends Activity implements I
 				}
 			}
 	
+		@Override
 		public void onServiceDisconnected(ComponentName className) 
 		{
 			Log.i(LOGC, "service disconnected.");

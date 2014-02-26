@@ -55,10 +55,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.intel.stc.events.StcException;
-import com.intel.stc.lib.StcLib;
-import com.intel.stc.lib.StcLib.NodeFlags;
-
 public class ServerController extends AbstractServiceUsingActivity implements OnClickListener{
 
 	private static final String TAG = "ServerController";
@@ -154,6 +150,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 				/** The players */
 				private ArrayList<Player> players;
 
+				@Override
 				public void run() {
 
 
@@ -216,6 +213,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 
 			final StcLib lib = serviceManager.getSTCLib();
 			myHandler.post(new Runnable() {
+				@Override
 				public void run()
 				{
 					try {
@@ -243,6 +241,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 	@Override
 	public void sessionsDiscovered() {
 		myHandler.post(new Runnable() {
+			@Override
 			public void run()
 			{
 				if (sessionAdapter != null)
@@ -315,6 +314,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 		alert.setView(parent);
 
 		alert.setPositiveButton("Next", new DialogInterface.OnClickListener() {
+			@Override
 			public void onClick(DialogInterface dialog, int whichButton) {
 				String user = userName.getText().toString();
 				String device = deviceName.getText().toString();

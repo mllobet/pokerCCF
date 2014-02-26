@@ -28,10 +28,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package lo.wolo.pokerccf;
 
-import com.intel.stc.events.StcException;
-import com.intel.stc.utility.StcSession;
-import com.intel.stc.utility.StcSocket;
-
 /**
  * Wrapper class to bind the Connection established Session users.
  * This class contains the information about socket connection, ReadEngine and WriteEngine.
