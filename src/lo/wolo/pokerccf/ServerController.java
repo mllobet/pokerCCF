@@ -35,7 +35,6 @@ import java.util.Set;
 
 import lo.wolo.pokerengine.*;
 import lo.wolo.pokerengine.actions.*;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -50,6 +49,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -71,6 +71,8 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 	private Button discoveryNodesButton = null;
 	private Button startButton = null;
 	private Dialog platformStartAlert;
+	
+	private Button changeLayoutButton = null;
 
 	private ServerController myself;
 
@@ -80,6 +82,8 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 		super.onCreate(savedInstanceState);
 
 		myself = this;
+		
+	    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		setContentView(R.layout.activity_ccfuicontroller);
 
@@ -96,6 +100,9 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 		discoveryNodesButton.setOnClickListener(this);
 		startButton = (Button)findViewById(R.id.startButton);
 		startButton.setOnClickListener(this);
+		
+		changeLayoutButton = (Button)findViewById(R.id.changeLayoutButton);
+		changeLayoutButton.setOnClickListener(this);
 
 		doStartService();
 
@@ -186,6 +193,12 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 			});
 			t.start();
 			break;
+		case R.id.changeLayoutButton :
+			Log.i("lolbug", "Changing layout...");
+			setContentView(R.layout.table_layout);
+			Log.i("lolbug", "Layoud changed");
+			break;
+			
 		}
 	}
 
