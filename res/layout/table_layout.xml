@@ -16,11 +16,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:textSize="28sp"
             android:text="@string/players"
             android:paddingRight="20dp" >
             
         </TextView>
+        
         <!--  Hardcoded users -->
         <TextView
             android:id="@+id/player1"
@@ -28,7 +29,7 @@
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:textSize="28sp"
             android:text="Albert"
             android:visibility="invisible">
         </TextView>
@@ -38,7 +39,7 @@
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:textSize="28sp"
             android:text="Dani"
             android:visibility="invisible">
        	</TextView>
@@ -48,7 +49,7 @@
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:textSize="28sp"
             android:text="David"
             android:visibility="invisible">
        	</TextView>
@@ -58,7 +59,7 @@
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:textSize="28sp"
             android:text="Miquel"
             android:visibility="invisible">
        	</TextView>
@@ -68,7 +69,7 @@
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:textSize="28sp"
             android:text="Shamit"
             android:visibility="invisible">
        	</TextView>
@@ -77,102 +78,99 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:textSize="28sp"
             android:text="Zuckerberg"
             android:visibility="invisible">
        	</TextView>
         
     </LinearLayout>
     
-    <!-- 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-        
-    </ListView>
-    -->
     
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:gravity="center" >
     <!--  Cards -->
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-         >
-        
-        <ImageView
-            android:id="@+id/card1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:contentDescription="@string/card1"
-            android:src="@drawable/card_back" />
-            
-        <ImageView
-            android:id="@+id/card2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:contentDescription="@string/card2"
-            android:src="@drawable/card_back" />
-            
-		<ImageView
-            android:id="@+id/card3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:contentDescription="@string/card3"
-            android:src="@drawable/card_back" />
-            
-       	<ImageView
-            android:id="@+id/card4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:contentDescription="@string/card4"
-            android:src="@drawable/card_back" />
-            
-        <ImageView
-            android:id="@+id/card5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:contentDescription="@string/card5"
-            android:src="@drawable/card_back" />
-            
-        
-    </LinearLayout>
+	    <LinearLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:gravity="center"
+	         >
+	        
+	        <ImageView
+	            android:id="@+id/card1"
+	            android:layout_width="180dp"
+	            android:layout_height="240dp"
+	            android:padding="10dp"
+	            android:contentDescription="@string/card1"
+	            android:src="@drawable/card_back" />
+	            
+	        <ImageView
+	            android:id="@+id/card2"
+	            android:layout_width="180dp"
+	            android:layout_height="240dp"
+	            android:padding="10dp"
+	            android:contentDescription="@string/card2"
+	            android:src="@drawable/card_back" />
+	            
+			<ImageView
+	            android:id="@+id/card3"
+	            android:layout_width="180dp"
+	            android:layout_height="240dp"
+	            android:padding="10dp"
+	            android:contentDescription="@string/card3"
+	            android:src="@drawable/card_back" />
+	            
+	       	<ImageView
+	            android:id="@+id/card4"
+	            android:layout_width="180dp"
+	            android:layout_height="240dp"
+	            android:padding="10dp"
+	            android:contentDescription="@string/card4"
+	            android:src="@drawable/card_back" />
+	            
+	        <ImageView
+	            android:id="@+id/card5"
+	            android:layout_width="180dp"
+	            android:layout_height="240dp"
+	            android:padding="10dp"
+	            android:contentDescription="@string/card5"
+	            android:src="@drawable/card_back" />
+	            
+	        
+	    </LinearLayout>
     
-    <!--  Cash + current bet layout -->
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" 
-        android:gravity="center">
-        
-        <TextView
-            android:id="@+id/potView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:textSize="32sp"
-            android:text="Pot: $ 0"
-            android:paddingRight="10dp" >
-        </TextView>
-        
-        <TextView
-            android:id="@+id/betView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:textSize="32sp"
-            android:text="CurBet: $ 0"
-            android:paddingLeft="10dp" >
-        </TextView>
-    </LinearLayout>
-        
-    <LinearLayout
+	    <!--  Cash + current bet layout -->
+	    <LinearLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal" 
+	        android:gravity="center">
+	        
+	        <TextView
+	            android:id="@+id/potView"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:textColor="#FFFFFF"
+	            android:textSize="32sp"
+	            android:text="Pot: $ 0"
+	            android:paddingRight="10dp" >
+	        </TextView>
+	        
+	        <TextView
+	            android:id="@+id/betView"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:textColor="#FFFFFF"
+	            android:textSize="32sp"
+	            android:text="CurBet: $ 0"
+	            android:paddingLeft="10dp" >
+	        </TextView>
+	    </LinearLayout>
+	    
+	        <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 	    <Button 
@@ -186,4 +184,9 @@
 	        android:layout_height="wrap_content"
 	        android:text="Start"></Button>
 	</LinearLayout>
+	    
+    </LinearLayout>
+	    
+	    
+
 </LinearLayout>
