@@ -180,9 +180,7 @@ public class Table {
         }
         Log.d(TAG,"Game Over");
         // Game over.
-        
-        for (int i = 1; i <= 5; i++) serverController.setCard(-1, i);
-        
+                
         board.clear();
         pots.clear();
         bet = 0;
@@ -198,6 +196,7 @@ public class Table {
      * Plays a single hand.
      */
     private void playHand() {
+        for (int i = 1; i <= 5; i++) serverController.setCard(-1, i);
         resetHand();
         
         int id = Integer.parseInt(actor.getName());
@@ -410,6 +409,7 @@ public class Table {
         notifyBoardUpdated();
         
         while (playersToAct > 0) {
+        	
             rotateActor();
             Action action = null;
             if (actor.isAllIn()) {
@@ -489,6 +489,7 @@ public class Table {
                         throw new IllegalStateException("Illegal client action: bet more cash than you own!");
                     }
                     bet = amount;
+                    serverController.setBetText(bet);
                     minBet = amount;
                     int betIncrement = bet - actor.getBet();
                     if (betIncrement > actor.getCash()) {
@@ -508,6 +509,7 @@ public class Table {
                         throw new IllegalStateException("Illegal client action: raise more cash than you own!");
                     }
                     bet += amount;
+                    serverController.setBetText(bet);
                     minBet = amount;
                     int betIncrement = bet - actor.getBet();
                     if (betIncrement > actor.getCash()) {
@@ -626,6 +628,9 @@ public class Table {
             pot.addContributer(actor);
             pots.add(pot);
         }
+        
+        if (pots.size() >= 1) 
+        	serverController.setPotText(pots.get(0).getValue());
     }
     
     /**

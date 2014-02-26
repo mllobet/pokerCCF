@@ -44,6 +44,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -72,32 +73,33 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 	private Button discoveryNodesButton = null;
 	private Button startButton = null;
 	private Dialog platformStartAlert;
-	
+
 	private Button changeLayoutButton = null;
-	
+
 	public ImageView card1 = null;
 	public ImageView card2 = null;
 	public ImageView card3 = null;
 	public ImageView card4 = null;
 	public ImageView card5 = null;
-	
+
 	public TextView player1 = null;
 	public TextView player2 = null;
 	public TextView player3 = null;
 	public TextView player4 = null;
 	public TextView player5 = null;
 	public TextView player6 = null;
-	
+
 	public TextView potView = null;
 	public TextView curBetView = null;
-	
-	
+
+
 	public int card1Hash = -1;
 	public int card2Hash = -1;
 	public int card3Hash = -1;
 	public int card4Hash = -1;
 	public int card5Hash = -1;
-	
+
+	protected PowerManager.WakeLock mWakeLock;
 	
 	static final int cardDrawables[] = {
 		R.drawable.card_00, R.drawable.card_01, R.drawable.card_02, R.drawable.card_03, R.drawable.card_04,
@@ -121,10 +123,14 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 		super.onCreate(savedInstanceState);
 
 		myself = this;
-		
-	    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		setContentView(R.layout.activity_ccfuicontroller);
+		final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+		this.mWakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "Poker Table");
+		this.mWakeLock.acquire();
+
 
 		sessionList = (ListView)findViewById(R.id.sessionList);
 		sessionEmptyText = (TextView)findViewById(R.id.sessionListEmptyText);
@@ -139,7 +145,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 		discoveryNodesButton.setOnClickListener(this);
 		startButton = (Button)findViewById(R.id.startButton);
 		startButton.setOnClickListener(this);
-		
+
 		changeLayoutButton = (Button)findViewById(R.id.changeLayoutButton);
 		changeLayoutButton.setOnClickListener(this);
 
@@ -171,32 +177,32 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 		doStopService();
 		super.onBackPressed();
 	}
-	
-	
+
+
 	private void setTableLayout() {
 		setContentView(R.layout.table_layout);
-		
+
 		card1 = (ImageView)findViewById(R.id.card1);
 		card2 = (ImageView)findViewById(R.id.card2);
 		card3 = (ImageView)findViewById(R.id.card3);
 		card4 = (ImageView)findViewById(R.id.card4);
 		card5 = (ImageView)findViewById(R.id.card5);
-		
+
 		player1 = (TextView)findViewById(R.id.player1);
 		player2 = (TextView)findViewById(R.id.player2);
 		player3 = (TextView)findViewById(R.id.player3);
 		player4 = (TextView)findViewById(R.id.player4);
 		player5 = (TextView)findViewById(R.id.player5);
 		player6 = (TextView)findViewById(R.id.player6);
-		
+
 		potView = (TextView)findViewById(R.id.potView);
 		curBetView = (TextView)findViewById(R.id.betView);
-		
+
 		startButton = (Button)findViewById(R.id.startButton);
 		startButton.setOnClickListener(this);
-		
+
 	}
-	
+
 
 	public void setCard(int cardHash, int cardNum) {
 		if (cardNum == 1) card1Hash = cardHash;
@@ -220,10 +226,10 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 				else card5.setImageResource(cardDrawables[card5Hash]);
 			}
 		});
-	
+
 	}
-	
-	
+
+
 	//This is a callback on button click.
 	@Override
 	public void onClick(View view) {
@@ -234,7 +240,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 			startActivity(intent);
 			break;
 		case R.id.startButton :
-			Log.i("lolbug", "Start BUtton pressed");
+			Log.i("lolbug", "Start Button pressed");
 			//HERE IS WHERE THE HACK HAPPENS
 			Thread t = new Thread(new Runnable() {
 
@@ -255,7 +261,6 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 
 				public void run() {
 
-
 					/** Initialize all the players **/
 					ArrayList<RemoteUser> remoteUsersList = serviceManager.getRemoteUsers();
 					int remoteUsersSize = remoteUsersList.size();
@@ -268,9 +273,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 						players.add(null);
 						serviceManager.actionList.add(null);
 					}
-					
-					
-					
+
 					Log.d("ServerController","players size: " + Integer.toString(players.size()));
 					for (int i = 0; i < players.size(); ++i)
 						players.set(i, new Player(Integer.toString(i), STARTING_CASH, new ClientCCF()));
@@ -288,7 +291,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 		case R.id.changeLayoutButton :
 			setTableLayout();
 			break;
-			
+
 		}
 	}
 
@@ -470,11 +473,45 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 		Log.d(TAG,"sendingCards: " + out);
 		sendMessage(id, "cards " + out);
 	}
-	
+
 	/** Send a message to a given player id */
 	public void sendMessage(int id, String message) {
 		Log.d("sendMessage","id: " + id + " " + message);
 		WriteEngine wEngine = serviceManager.getRemoteUsers().get(id).getWriter();
 		wEngine.writeString(message+";");
 	}
+
+	private int betHack;
+	//This method is used to update the chatlist, once chat message is received from remote session.
+	public void setBetText(int bet) {
+		betHack = bet;
+		myHandler.post(new Runnable() {
+
+			@Override
+			public void run() {
+				curBetView.setText("Min Bet: $" + betHack);
+			}
+		});
+
+	}
+
+	private int potHack;
+	//This method is used to update the chatlist, once chat message is received from remote session.
+	public void setPotText(int pot) {
+		potHack = pot;
+		myHandler.post(new Runnable() {
+
+			@Override
+			public void run() {
+				potView.setText("Big Pot: $" + Integer.toString(potHack));
+			}
+		});
+
+	}
+	
+	@Override
+    public void onDestroy() {
+        this.mWakeLock.release();
+        super.onDestroy();
+    }
 }
