@@ -223,6 +223,7 @@ public class Table {
         	Log.d(TAG,"ActivePlayers: " + Integer.toString(activePlayers.size()));
             bet = 0;
             dealCommunityCards("Flop", 3);
+            for (Card cd :board) Log.i("lolbug", Integer.toString(cd.hashCode()));
             minBet = bigBlind;
             doBettingRound();
 
