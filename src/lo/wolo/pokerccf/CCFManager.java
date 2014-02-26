@@ -139,6 +139,19 @@ public class CCFManager extends StcServiceInet implements StcSessionUpdateListen
 	public void localSessionUpdated() {
 		Log.i(LOGC, "localSessionUpdated");
 	}
+
+	private void addUser(RemoteUser user) {
+		boolean alreadyInList = false;
+		for (RemoteUser u : remoteUsersList) {
+			if (user.toString().equals(u.toString())) {
+				Log.d(TAG,"RemoteUser already in remoteUserList: " + user.toString());
+				alreadyInList = true;
+				break;
+			}	
+		}
+		if (!alreadyInList)
+			remoteUsersList.add(user);
+	}
 	
 	//To receive connection response from remote session.
 	@Override
@@ -165,17 +178,9 @@ public class CCFManager extends StcServiceInet implements StcSessionUpdateListen
 					remoteSessionsMap.put(user.getSession().getSessionUuid(), user);
 					//ArrayList stuff
 					Log.d("CCFManager","User: added");
+
+					addUser(user);
 					
-					boolean alreadyInList = false;
-					for (RemoteUser u : remoteUsersList) {
-						if (user.toString().equals(u.toString())) {
-							Log.d(TAG,"RemoteUser already in remoteUserList: " + user.toString());
-							alreadyInList = true;
-							break;
-						}	
-					}
-					if (!alreadyInList)
-						remoteUsersList.add(user);
 					Log.d("CCFManager", "size: " + Integer.toString(remoteUsersList.size()));
 					Log.d("CCFManager", remoteUsersList.toString());
 				} catch (StcException e) {
@@ -211,6 +216,7 @@ public class CCFManager extends StcServiceInet implements StcSessionUpdateListen
 						user.setDataStream(socket);
 						user.setsessionState(SessionState.CONNECTED);
 						remoteSessionsMap.put(user.getSession().getSessionUuid(), user);
+						addUser(user);
 					}
 				}
 			}
