@@ -180,6 +180,9 @@ public class Table {
         }
         Log.d(TAG,"Game Over");
         // Game over.
+        
+        for (int i = 1; i <= 5; i++) serverController.setCard(-1, i);
+        
         board.clear();
         pots.clear();
         bet = 0;
