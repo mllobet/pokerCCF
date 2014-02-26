@@ -30,8 +30,7 @@
             android:paddingRight="20dp"
             android:textColor="#FFFFFF"
             android:textSize="28sp"
-            android:text="Albert"
-            android:visibility="invisible">
+            android:text="" >
         </TextView>
         <TextView 
             android:id="@+id/player2"
@@ -40,8 +39,7 @@
             android:paddingRight="20dp"
             android:textColor="#FFFFFF"
             android:textSize="28sp"
-            android:text="Dani"
-            android:visibility="invisible">
+            android:text="" >
        	</TextView>
 		<TextView 
 			android:id="@+id/player3"
@@ -50,8 +48,7 @@
             android:paddingRight="20dp"
             android:textColor="#FFFFFF"
             android:textSize="28sp"
-            android:text="David"
-            android:visibility="invisible">
+            android:text="" >
        	</TextView>
 		<TextView 
 		    android:id="@+id/player4"
@@ -60,8 +57,7 @@
             android:paddingRight="20dp"
             android:textColor="#FFFFFF"
             android:textSize="28sp"
-            android:text="Miquel"
-            android:visibility="invisible">
+            android:text="" >
        	</TextView>
 		<TextView 
 		    android:id="@+id/player5"
@@ -70,8 +66,7 @@
             android:paddingRight="20dp"
             android:textColor="#FFFFFF"
             android:textSize="28sp"
-            android:text="Shamit"
-            android:visibility="invisible">
+            android:text="" >
        	</TextView>
 		<TextView 
 		    android:id="@+id/player6"
@@ -79,8 +74,7 @@
             android:layout_height="wrap_content"
             android:textColor="#FFFFFF"
             android:textSize="28sp"
-            android:text="Zuckerberg"
-            android:visibility="invisible">
+            android:text="" >
        	</TextView>
         
     </LinearLayout>

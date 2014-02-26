@@ -101,6 +101,13 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 
 	protected PowerManager.WakeLock mWakeLock;
 	
+	public String playerName1 = "";
+	public String playerName2 = "";
+	public String playerName3 = "";
+	public String playerName4 = "";
+	public String playerName5 = "";
+	public String playerName6 = "";
+	
 	static final int cardDrawables[] = {
 		R.drawable.card_00, R.drawable.card_01, R.drawable.card_02, R.drawable.card_03, R.drawable.card_04,
 		R.drawable.card_05, R.drawable.card_06, R.drawable.card_07, R.drawable.card_08, R.drawable.card_09,
@@ -204,6 +211,28 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 	}
 
 
+	public void setPlayer(String playerName, int playerNum) {
+		if (playerNum == 1) playerName1 = playerName;
+		else if (playerNum == 2) playerName2 = playerName;
+		else if (playerNum == 3) playerName3 = playerName;
+		else if (playerNum == 4) playerName4 = playerName;
+		else if (playerNum == 5) playerName5 = playerName;
+		else if (playerNum == 6) playerName6 = playerName;
+		myHandler.post(new Runnable() {
+			public void run () {
+				Log.i("lolbug", "Setting names");
+				
+				player1.setText(playerName1);
+				player2.setText(playerName2);
+				player3.setText(playerName3);
+				player4.setText(playerName4);
+				player5.setText(playerName5);
+				player6.setText(playerName6);
+				Log.i("lolbug", "Finished setting names");
+			}
+		});
+	}
+	
 	public void setCard(int cardHash, int cardNum) {
 		if (cardNum == 1) card1Hash = cardHash;
 		else if (cardNum == 2) card2Hash = cardHash;

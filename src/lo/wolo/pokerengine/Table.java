@@ -44,7 +44,6 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import android.util.Log;
-
 import lo.wolo.pokerccf.CCFManager;
 import lo.wolo.pokerccf.RemoteUser;
 import lo.wolo.pokerccf.ServerController;
@@ -141,6 +140,7 @@ public class Table {
         this.serviceManager = serviceManager;
         this.remoteUsers = serviceManager.getRemoteUsers();
         this.serverController = serverController;
+        
     }
     
     /**
@@ -157,6 +157,18 @@ public class Table {
      * Main game loop.
      */
     public void run() {
+        Log.i("lolbug", "Displaying all the players...");
+        for (Player p : players) {
+        	int id = Integer.parseInt(p.getName());
+        	ArrayList<RemoteUser> remoteUserList = serviceManager.getRemoteUsers();
+        	RemoteUser u = remoteUserList.get(id);
+        	String s = u.getSession().getUserName();
+        	serverController.setPlayer(s, id+1);
+        	Log.i("lolbug", "Username " + id + " = " + s);
+        }
+        Log.i("lolbug", "Finished displaying players");
+        
+    	
         for (Player player : players) {
             player.getClient().joinedTable(tableType, bigBlind, players);
         }
@@ -180,6 +192,8 @@ public class Table {
         }
         Log.d(TAG,"Game Over");
         // Game over.
+
+        //REMOVED SET CARDS TO -1 HERE
                 
         board.clear();
         pots.clear();
