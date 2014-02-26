@@ -441,6 +441,8 @@ public class Table {
                 if (actorRemoteUser.getsessionState() == CCFManager.SessionState.CONNECTED) {
                 	Log.d(TAG,actorRemoteUser.toString() + " isConected");
                 	serverController.sendActionsAllowed(actorID,allowedActions);
+                	// Highlight the user name
+                	serverController.highlightPlayer(actorID);
                 } else {
                 	Log.d("Table","Actor: " + actor.getName() + " was NOTCONECTED");
                 }

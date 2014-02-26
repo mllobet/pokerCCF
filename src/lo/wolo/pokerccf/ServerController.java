@@ -43,6 +43,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.text.Editable;
@@ -98,6 +99,8 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 	public int card3Hash = -1;
 	public int card4Hash = -1;
 	public int card5Hash = -1;
+	
+	public int currentPlayer = 0;
 
 	protected PowerManager.WakeLock mWakeLock;
 	
@@ -217,6 +220,20 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 
 	}
 
+	public void highlightPlayer(int playerNum) {
+		currentPlayer = playerNum;
+		myHandler.post(new Runnable() {
+			public void run() {
+				Log.i("lolbug", "Highlighting current user: " + currentPlayer);
+				player1.setTypeface(null, (currentPlayer == 0) ? Typeface.BOLD : Typeface.NORMAL);
+				player2.setTypeface(null, (currentPlayer == 1) ? Typeface.BOLD : Typeface.NORMAL);
+				player3.setTypeface(null, (currentPlayer == 2) ? Typeface.BOLD : Typeface.NORMAL);
+				player4.setTypeface(null, (currentPlayer == 3) ? Typeface.BOLD : Typeface.NORMAL);
+				player5.setTypeface(null, (currentPlayer == 4) ? Typeface.BOLD : Typeface.NORMAL);
+				player6.setTypeface(null, (currentPlayer == 5) ? Typeface.BOLD : Typeface.NORMAL);
+			}
+		});
+	}
 
 	public void setPlayer(String playerName, int playerNum) {
 		if (playerNum == 1) playerName1 = playerName;
