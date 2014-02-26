@@ -630,13 +630,7 @@ public class CCFManager extends StcServiceInet implements StcSessionUpdateListen
 		
 		public void sendActionsAllowed(int id, Set<Action> allowedActions) {
 			WriteEngine wEngine = getRemoteUsers().get(id).getWriter();
-			wEngine.writeString("cmds " + encodeActions(allowedActions));
-			try {
-				Thread.sleep(300);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			wEngine.writeString("cmds " + encodeActions(allowedActions)+";");
 		}
 
 		private String encodeActions(Set<Action> s) {

@@ -208,9 +208,10 @@ public class Table {
         postSmallBlind();
         
         // Big blind.
+        
+        rotateActor();
         id = Integer.parseInt(actor.getName());
         serverController.sendMessage(id, "role bigBlind");
-        rotateActor();
         postBigBlind();
         
         // Pre-Flop.

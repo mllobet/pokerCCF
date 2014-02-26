@@ -4,14 +4,14 @@ Copyright (c) 2011-2013, Intel Corporation
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
 
-    * Redistributions of source code must retain the above copyright notice,
+ * Redistributions of source code must retain the above copyright notice,
       this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above copyright notice,
+ * Redistributions in binary form must reproduce the above copyright notice,
       this list of conditions and the following disclaimer in the documentation
       and/or other materials provided with the distribution.
 
-    * Neither the name of Intel Corporation nor the names of its contributors
+ * Neither the name of Intel Corporation nor the names of its contributors
       may be used to endorse or promote products derived from this software
       without specific prior written permission.
 
@@ -25,7 +25,7 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
 LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ */
 package lo.wolo.pokerccf;
 
 import java.io.IOException;
@@ -43,13 +43,13 @@ import android.util.Log;
 public class WriteEngine implements Runnable 
 {
 	static final String LOGC = "PokerCCF";
-	
+
 	IServiceIOListener listener;
 	OutputStream stream;
 	BlockingQueue<String> queue;
 	Thread thread;
 	volatile boolean running = true;
-	
+
 	public WriteEngine(OutputStream stream, IServiceIOListener listener)
 	{
 		this.listener = listener;
@@ -60,12 +60,19 @@ public class WriteEngine implements Runnable
 		thread.setName("Write Engine Thread");
 		thread.start();
 	}
-	
+
 	public void writeString(String s)
 	{
-		queue.add(s);
+
+		try {
+			stream.write(s.getBytes());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Log.d("IO","W: " + s);
 	}
-	
+
 	public void stop()
 	{
 		running = false;
@@ -74,22 +81,22 @@ public class WriteEngine implements Runnable
 
 	public void run() 
 	{
-		
+
 		while( running )
 		{
-			try {
-				String s = queue.take();
-				if( running ) {
-					stream.write(s.getBytes());
-					Log.d("IO","W: " + s);
-				}
-			} catch(InterruptedException e) {
-				Log.e(LOGC, e.toString() );
-				listener.remoteDisconnect();
-			} catch(IOException e) {
-				Log.i(LOGC, e.toString() );
-				listener.remoteDisconnect();
-			}
+			//			try {
+			//				String s = queue.take();
+			//				if( running ) {
+			//					stream.write(s.getBytes());
+			//					Log.d("IO","W: " + s);
+			//				}
+			//			} catch(InterruptedException e) {
+			//				Log.e(LOGC, e.toString() );
+			//				listener.remoteDisconnect();
+			//			} catch(IOException e) {
+			//				Log.i(LOGC, e.toString() );
+			//				listener.remoteDisconnect();
+			//			}
 		}
 	}
 }

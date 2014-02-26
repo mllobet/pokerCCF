@@ -180,7 +180,7 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 					table = new Table(TABLE_TYPE, BIG_BLIND, serviceManager, myself);
 					for (Player player : players)
 						table.addPlayer(player);
-					myself.serviceManager.postToConnections("minbet " + BIG_BLIND/2);
+					myself.serviceManager.postToConnections("minbet " + BIG_BLIND/2 + ";");
 					table.run();	    	
 				}
 			});
@@ -342,12 +342,6 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 	public void sendActionsAllowed(int id, Set<Action> allowedActions) {
 		Log.d(TAG,"sendingActionsAllowed");
 		sendMessage(id, "cmds " + encodeActions(allowedActions));
-		try {
-			Thread.sleep(300);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	/** it encodes a set of actions to be sent */
@@ -372,17 +366,11 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 		}
 		Log.d(TAG,"sendingCards: " + out);
 		sendMessage(id, "cards " + out);
-		try {
-			Thread.sleep(300);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	/** Send a message to a given player id */
 	public void sendMessage(int id, String message) {
 		WriteEngine wEngine = serviceManager.getRemoteUsers().get(id).getWriter();
-		wEngine.writeString(message);
+		wEngine.writeString(message+";");
 	}
 }
