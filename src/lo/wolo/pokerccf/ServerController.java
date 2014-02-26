@@ -159,6 +159,9 @@ public class ServerController extends AbstractServiceUsingActivity implements On
 
 		startButton = (Button)findViewById(R.id.startButton);
 		startButton.setOnClickListener(this);
+		
+		discoveryNodesButton = (Button)findViewById(R.id.discoveryButton);
+		discoveryNodesButton.setOnClickListener(this);
 
 		doStartService();
 
